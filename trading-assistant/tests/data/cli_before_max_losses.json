@@ -1,0 +1,144 @@
+[
+ {
+  "argv": [
+   "losses.csv"
+  ],
+  "code": 0,
+  "out": "Bars:    17\nLast:    13.00\nSignal:  HOLD\nRSI:     58.6 (neutral)\nResearch aid only. Not financial advice.\n",
+  "err": ""
+ },
+ {
+  "argv": [
+   "losses.csv",
+   "--backtest",
+   "--cash",
+   "1000",
+   "--short",
+   "1",
+   "--long",
+   "2"
+  ],
+  "code": 0,
+  "out": "Bars:    17\nLast:    13.00\nSignal:  HOLD\nRSI:     58.6 (neutral)\nBacktest: SMA 1/2 crossover, next-bar fills, whole shares, no shorting\n  Start cash:  1,000.00\n  Trades:      5 (3 buy, 2 sell)\n  Fills (bar index is 0-based):\n    #1   bar 4     BUY        90 @      11.00  value       990.00  cost     0.00  cash        10.00\n    #2   bar 7     SELL       90 @       9.00  value       810.00  cost     0.00  cash       820.00\n    #3   bar 10    BUY        82 @      10.00  value       820.00  cost     0.00  cash         0.00\n    #4   bar 13    SELL       82 @       9.00  value       738.00  cost     0.00  cash       738.00\n    #5   bar 15    BUY        61 @      12.00  value       732.00  cost     0.00  cash         6.00\n  Costs:       0.00 paid (fee 0.00 per trade + 0.00% of value)\n  Round trips: 2 completed, 0 made money (0%)\n  Comparison              Strategy    Buy & hold\n    End equity              799.00      1,300.00\n    Return                 -20.10%       +30.00%\n    Max drawdown           -32.29%       -33.33%\n    Trades                       5             1\n    Costs paid                0.00          0.00\n  End cash:    6.00\n  End shares:  61 @ 13.00\n  End equity:  799.00\n  Return:      -20.10%\nResearch aid only. Not financial advice.\n",
+  "err": ""
+ },
+ {
+  "argv": [
+   "losses.csv",
+   "--backtest",
+   "--cash",
+   "1000",
+   "--short",
+   "1",
+   "--long",
+   "2",
+   "--json"
+  ],
+  "code": 0,
+  "out": "{\n  \"bars\": 17,\n  \"last_close\": 13.0,\n  \"signal\": \"HOLD\",\n  \"rsi\": 58.57843137254902,\n  \"rsi_label\": \"neutral\",\n  \"backtest\": {\n    \"strategy\": \"sma_cross\",\n    \"params\": {\n      \"short\": 1,\n      \"long\": 2\n    },\n    \"fill\": \"close\",\n    \"start_cash\": 1000.0,\n    \"fee\": 0.0,\n    \"fee_pct\": 0.0,\n    \"slippage_pct\": 0.0,\n    \"position_size\": null,\n    \"stop_loss_pct\": null,\n    \"take_profit_pct\": null,\n    \"trades\": 5,\n    \"buys\": 3,\n    \"sells\": 2,\n    \"fills\": [\n      {\n        \"bar\": 4,\n        \"side\": \"BUY\",\n        \"shares\": 90,\n        \"price\": 11.0,\n        \"value\": 990.0,\n        \"cost\": 0.0,\n        \"cash_after\": 10.0,\n        \"reason\": \"signal\"\n      },\n      {\n        \"bar\": 7,\n        \"side\": \"SELL\",\n        \"shares\": 90,\n        \"price\": 9.0,\n        \"value\": 810.0,\n        \"cost\": 0.0,\n        \"cash_after\": 820.0,\n        \"reason\": \"signal\"\n      },\n      {\n        \"bar\": 10,\n        \"side\": \"BUY\",\n        \"shares\": 82,\n        \"price\": 10.0,\n        \"value\": 820.0,\n        \"cost\": 0.0,\n        \"cash_after\": 0.0,\n        \"reason\": \"signal\"\n      },\n      {\n        \"bar\": 13,\n        \"side\": \"SELL\",\n        \"shares\": 82,\n        \"price\": 9.0,\n        \"value\": 738.0,\n        \"cost\": 0.0,\n        \"cash_after\": 738.0,\n        \"reason\": \"signal\"\n      },\n      {\n        \"bar\": 15,\n        \"side\": \"BUY\",\n        \"shares\": 61,\n        \"price\": 12.0,\n        \"value\": 732.0,\n        \"cost\": 0.0,\n        \"cash_after\": 6.0,\n        \"reason\": \"signal\"\n      }\n    ],\n    \"total_costs\": 0.0,\n    \"round_trips\": 2,\n    \"winning_round_trips\": 0,\n    \"final_cash\": 6.0,\n    \"final_position\": 61,\n    \"final_price\": 13.0,\n    \"final_equity\": 799.0,\n    \"return_pct\": -20.1,\n    \"max_drawdown_pct\": -32.29357798165138,\n    \"benchmark\": {\n      \"shares\": 100,\n      \"final_cash\": 0.0,\n      \"final_equity\": 1300.0,\n      \"return_pct\": 30.0,\n      \"max_drawdown_pct\": -33.33333333333333,\n      \"trades\": 1,\n      \"total_costs\": 0.0\n    }\n  },\n  \"disclaimer\": \"Research aid only. Not financial advice.\"\n}\n",
+  "err": ""
+ },
+ {
+  "argv": [
+   "losses.csv",
+   "--backtest",
+   "--cash",
+   "1000",
+   "--short",
+   "1",
+   "--long",
+   "2",
+   "--fee",
+   "1",
+   "--slippage",
+   "0.5",
+   "--position-size",
+   "0.5",
+   "--stats"
+  ],
+  "code": 0,
+  "out": "Bars:    17\nLast:    13.00\nSignal:  HOLD\nRSI:     58.6 (neutral)\nBacktest: SMA 1/2 crossover, next-bar fills, whole shares, no shorting\n  Start cash:  1,000.00\n  Trades:      5 (3 buy, 2 sell)\n  Fills (bar index is 0-based):\n    #1   bar 4     BUY        45 @      11.05  value       497.47  cost     1.00  cash       501.53\n    #2   bar 7     SELL       45 @       8.96  value       402.98  cost     1.00  cash       903.50\n    #3   bar 10    BUY        44 @      10.05  value       442.20  cost     1.00  cash       460.30\n    #4   bar 13    SELL       44 @       8.96  value       394.02  cost     1.00  cash       853.32\n    #5   bar 15    BUY        35 @      12.06  value       422.10  cost     1.00  cash       430.22\n  Costs:       5.00 paid (fee 1.00 per trade + 0.00% of value)\n  Slippage:    0.50% (buys fill higher, sells lower, before fees)\n  Sizing:      each buy at most 50% of account value (costs and slippage included)\n  Round trips: 2 completed, 0 made money (0%)\n  Comparison              Strategy    Buy & hold\n    End equity              885.22      1,291.05\n    Return                 -11.48%       +29.11%\n    Max drawdown           -18.37%       -33.22%\n    Trades                       5             1\n    Costs paid                5.00          1.00\n  End cash:    430.22\n  End shares:  35 @ 13.00\n  End equity:  885.22\n  Return:      -11.48%\nRisk and return\n  Total return:       -11.48%\n  CAGR:               -85.34%\n  Volatility (ann.):  58.39%\n  Sharpe ratio:       -3.00\n  Sortino ratio:      -3.61\n  Exposure:           47.06%\n  Profit factor:      0.00\n  Average win:        n/a\n  Average loss:       -73.34\n  Longest drawdown:   11 bars\nResearch aid only. Not financial advice.\n",
+  "err": ""
+ },
+ {
+  "argv": [
+   "losses.csv",
+   "--backtest",
+   "--cash",
+   "1000",
+   "--short",
+   "1",
+   "--long",
+   "2",
+   "--min-hold",
+   "4",
+   "--max-hold",
+   "3",
+   "--max-drawdown",
+   "17"
+  ],
+  "code": 0,
+  "out": "Bars:    17\nLast:    13.00\nSignal:  HOLD\nRSI:     58.6 (neutral)\nBacktest: SMA 1/2 crossover, next-bar fills, whole shares, no shorting\n  Start cash:  1,000.00\n  Trades:      2 (1 buy, 1 sell)\n  Fills (bar index is 0-based):\n    #1   bar 4     BUY        90 @      11.00  value       990.00  cost     0.00  cash        10.00  signal\n    #2   bar 7     SELL       90 @       9.00  value       810.00  cost     0.00  cash       820.00  time\n  Costs:       0.00 paid (fee 0.00 per trade + 0.00% of value)\n  Min hold:    4 bars after a position's first buy before a signal sell can fill; 1 signal sell skipped\n  Max hold:    3 bars after a position's first buy, then sold at the bar's fill price; 1 time exit\n  Drawdown:    halt at 17.00% below the peak account value at a close; triggered at bar 7, no buy fills after it; 2 buys skipped\n  Round trips: 1 completed, 0 made money (0%)\n  Comparison              Strategy    Buy & hold\n    End equity              820.00      1,300.00\n    Return                 -18.00%       +30.00%\n    Max drawdown           -24.77%       -33.33%\n    Trades                       2             1\n    Costs paid                0.00          0.00\n  End cash:    820.00\n  End shares:  0 @ 13.00\n  End equity:  820.00\n  Return:      -18.00%\nResearch aid only. Not financial advice.\n",
+  "err": ""
+ },
+ {
+  "argv": [
+   "losses.csv",
+   "--backtest",
+   "--cash",
+   "1000",
+   "--short",
+   "1",
+   "--long",
+   "2",
+   "--resample",
+   "weekly"
+  ],
+  "code": 0,
+  "out": "Bars:    3\nLast:    13.00\nSignal:  HOLD\nRSI:     n/a\nBacktest: SMA 1/2 crossover, next-bar fills, whole shares, no shorting\n  Start cash:  1,000.00\n  Trades:      0 (0 buy, 0 sell)\n  Costs:       0.00 paid (fee 0.00 per trade + 0.00% of value)\n  Round trips: 0 completed\n  Comparison              Strategy    Buy & hold\n    End equity            1,000.00      1,444.00\n    Return                  +0.00%       +44.40%\n    Max drawdown             0.00%         0.00%\n    Trades                       0             1\n    Costs paid                0.00          0.00\n  End cash:    1,000.00\n  End shares:  0 @ 13.00\n  End equity:  1,000.00\n  Return:      +0.00%\nResearch aid only. Not financial advice.\n",
+  "err": ""
+ },
+ {
+  "argv": [
+   "c.csv",
+   "--backtest",
+   "--cash",
+   "1000",
+   "--short",
+   "1",
+   "--long",
+   "2",
+   "--fill",
+   "open",
+   "--stop-loss",
+   "10",
+   "--cooldown",
+   "3",
+   "--breakeven",
+   "5"
+  ],
+  "code": 0,
+  "out": "Bars:    11\nLast:    12.20\nSignal:  HOLD\nRSI:     n/a\nBacktest: SMA 1/2 crossover, next-bar open fills, whole shares, no shorting\n  Start cash:  1,000.00\n  Trades:      2 (1 buy, 1 sell)\n  Fills (bar index is 0-based):\n    #1   bar 4     BUY        92 @      10.80  value       993.60  cost     0.00  cash         6.40  signal\n    #2   bar 6     SELL       92 @      10.80  value       993.60  cost     0.00  cash     1,000.00  breakeven\n  Costs:       0.00 paid (fee 0.00 per trade + 0.00% of value)\n  Exits:       stop 10.00% below entry, breakeven at entry once a later high is 5.00% above it (the higher of stop and breakeven is used, stop on a tie)\n  Cooldown:    3 bars after a stop, trail, atr or breakeven exit; 1 buy skipped\n  Round trips: 1 completed, 0 made money (0%)\n  Comparison              Strategy    Buy & hold\n    End equity            1,000.00      1,220.00\n    Return                  +0.00%       +22.00%\n    Max drawdown            -9.94%       -20.00%\n    Trades                       2             1\n    Costs paid                0.00          0.00\n  End cash:    1,000.00\n  End shares:  0 @ 12.20\n  End equity:  1,000.00\n  Return:      +0.00%\nResearch aid only. Not financial advice.\n",
+  "err": ""
+ },
+ {
+  "argv": [
+   "losses.csv",
+   "--max-drawdown",
+   "10"
+  ],
+  "code": 2,
+  "out": "",
+  "err": "usage: trading_assistant.cli [-h] [--short SHORT] [--long LONG]\n                             [--rsi-period RSI_PERIOD] [--backtest]\n                             [--cash AMOUNT] [--fee AMOUNT] [--fee-pct PCT]\n                             [--slippage PCT] [--position-size FRACTION]\n                             [--stop-loss PCT] [--take-profit PCT]\n                             [--export FILE] [--fill {close,open}]\n                             [--resample {weekly,monthly}]\n                             [--strategy {sma_cross,rsi_reversion,breakout,ema_cross,momentum,zscore_reversion,hull_trend}]\n                             [--param KEY=VALUE] [--stats] [--config FILE]\n                             [--json] [--chart] [--candles] [--scan FOLDER]\n                             [--min-score N] [--top N] [--report FILE]\n                             csv_path\ntrading_assistant.cli: error: --max-drawdown only makes sense together with --backtest\n"
+ },
+ {
+  "argv": [
+   "--scan",
+   "scan",
+   "--backtest"
+  ],
+  "code": 2,
+  "out": "",
+  "err": "usage: trading_assistant.cli [-h] [--short SHORT] [--long LONG]\n                             [--rsi-period RSI_PERIOD] [--backtest]\n                             [--cash AMOUNT] [--fee AMOUNT] [--fee-pct PCT]\n                             [--slippage PCT] [--position-size FRACTION]\n                             [--stop-loss PCT] [--take-profit PCT]\n                             [--export FILE] [--fill {close,open}]\n                             [--resample {weekly,monthly}]\n                             [--strategy {sma_cross,rsi_reversion,breakout,ema_cross,momentum,zscore_reversion,hull_trend}]\n                             [--param KEY=VALUE] [--stats] [--config FILE]\n                             [--json] [--chart] [--candles] [--scan FOLDER]\n                             [--min-score N] [--top N] [--report FILE]\n                             [csv_path]\ntrading_assistant.cli: error: --backtest cannot be combined with --scan\n"
+ }
+]

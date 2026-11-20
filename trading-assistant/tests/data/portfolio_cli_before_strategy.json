@@ -1,0 +1,1866 @@
+{
+ "commands": [
+  {
+   "argv": [
+    "pf",
+    "--short",
+    "2",
+    "--long",
+    "3",
+    "--cash",
+    "1000"
+   ],
+   "code": 0,
+   "stdout": "Portfolio: 2 symbols, cash split equally, SMA 2/3 crossover, fee 0.00 + 0.00%, on the dates every file shares\nDates: 2026-04-01 to 2026-04-10 (10 shared dates)\nCash: 1,000.00  Final equity: 912.00\nReturn: -8.80%  Max drawdown: -8.80%  Buy & hold (equal weight): +20.00%\nSymbol  Bars used  Bars lost   Return  Trades  Buy&Hold\nAAA            10          0   +0.00%       1   +40.00%\nBBB            10          0  -17.60%       2    +0.00%\nWorst single-symbol drawdown: -17.60% (BBB)\nResearch aid only. Not financial advice.\n",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "pf",
+    "--short",
+    "2",
+    "--long",
+    "3",
+    "--cash",
+    "1000",
+    "--json"
+   ],
+   "code": 0,
+   "stdout": "{\n  \"summary\": {\n    \"short\": 2,\n    \"long\": 3,\n    \"fee\": 0.0,\n    \"fee_pct\": 0.0,\n    \"start_date\": \"2026-04-01\",\n    \"end_date\": \"2026-04-10\",\n    \"shared_dates\": 10,\n    \"initial_cash\": 1000.0,\n    \"final_equity\": 912.0,\n    \"return_pct\": -8.799999999999999,\n    \"max_drawdown_pct\": -8.799999999999999,\n    \"buy_hold_return_pct\": 20.0,\n    \"worst_symbol_drawdown\": {\n      \"symbol\": \"BBB\",\n      \"max_drawdown_pct\": -17.599999999999998\n    },\n    \"symbols\": [\n      {\n        \"symbol\": \"AAA\",\n        \"bars_used\": 10,\n        \"bars_lost\": 0,\n        \"return_pct\": 0.0,\n        \"trades\": 1,\n        \"buy_hold_return_pct\": 40.0\n      },\n      {\n        \"symbol\": \"BBB\",\n        \"bars_used\": 10,\n        \"bars_lost\": 0,\n        \"return_pct\": -17.599999999999998,\n        \"trades\": 2,\n        \"buy_hold_return_pct\": 0.0\n      }\n    ]\n  },\n  \"skipped\": [],\n  \"disclaimer\": \"Research aid only. Not financial advice.\"\n}\n",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "pf",
+    "--short",
+    "2",
+    "--long",
+    "3",
+    "--cash",
+    "1000",
+    "--weights",
+    "AAA=60",
+    "BBB=40"
+   ],
+   "code": 0,
+   "stdout": "Portfolio: 2 symbols, cash split by weight (AAA 60%, BBB 40%), SMA 2/3 crossover, fee 0.00 + 0.00%, on the dates every file shares\nDates: 2026-04-01 to 2026-04-10 (10 shared dates)\nCash: 1,000.00  Final equity: 928.00\nReturn: -7.20%  Max drawdown: -7.20%  Buy & hold (same weights): +24.00%\nSymbol  Weight  Bars used  Bars lost   Return  Trades  Buy&Hold\nAAA        60%         10          0   +0.00%       1   +40.00%\nBBB        40%         10          0  -18.00%       2    +0.00%\nWorst single-symbol drawdown: -18.00% (BBB)\nResearch aid only. Not financial advice.\n",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "pf",
+    "--short",
+    "2",
+    "--long",
+    "3",
+    "--cash",
+    "1000",
+    "--weights",
+    "AAA=60",
+    "BBB=40",
+    "--json"
+   ],
+   "code": 0,
+   "stdout": "{\n  \"summary\": {\n    \"short\": 2,\n    \"long\": 3,\n    \"fee\": 0.0,\n    \"fee_pct\": 0.0,\n    \"weights\": {\n      \"AAA\": 60.0,\n      \"BBB\": 40.0\n    },\n    \"start_date\": \"2026-04-01\",\n    \"end_date\": \"2026-04-10\",\n    \"shared_dates\": 10,\n    \"initial_cash\": 1000.0,\n    \"final_equity\": 928.0,\n    \"return_pct\": -7.199999999999999,\n    \"max_drawdown_pct\": -7.199999999999999,\n    \"buy_hold_return_pct\": 24.0,\n    \"worst_symbol_drawdown\": {\n      \"symbol\": \"BBB\",\n      \"max_drawdown_pct\": -18.0\n    },\n    \"symbols\": [\n      {\n        \"symbol\": \"AAA\",\n        \"bars_used\": 10,\n        \"bars_lost\": 0,\n        \"return_pct\": 0.0,\n        \"trades\": 1,\n        \"buy_hold_return_pct\": 40.0\n      },\n      {\n        \"symbol\": \"BBB\",\n        \"bars_used\": 10,\n        \"bars_lost\": 0,\n        \"return_pct\": -18.0,\n        \"trades\": 2,\n        \"buy_hold_return_pct\": 0.0\n      }\n    ]\n  },\n  \"skipped\": [],\n  \"disclaimer\": \"Research aid only. Not financial advice.\"\n}\n",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "pf",
+    "--s",
+    "2",
+    "--l",
+    "3",
+    "--fee",
+    "0.5",
+    "--fee-pct",
+    "0.1"
+   ],
+   "code": 0,
+   "stdout": "Portfolio: 2 symbols, cash split equally, SMA 2/3 crossover, fee 0.50 + 0.10%, on the dates every file shares\nDates: 2026-04-01 to 2026-04-10 (10 shared dates)\nCash: 10,000.00  Final equity: 9,076.44\nReturn: -9.24%  Max drawdown: -9.24%  Buy & hold (equal weight): +19.85%\nSymbol  Bars used  Bars lost   Return  Trades  Buy&Hold\nAAA            10          0   -0.11%       1   +39.81%\nBBB            10          0  -18.36%       2    -0.11%\nWorst single-symbol drawdown: -18.36% (BBB)\nResearch aid only. Not financial advice.\n",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "pf",
+    "--short",
+    "2",
+    "--long",
+    "3",
+    "--csv",
+    "out.csv"
+   ],
+   "code": 0,
+   "stdout": "Portfolio: 2 symbols, cash split equally, SMA 2/3 crossover, fee 0.00 + 0.00%, on the dates every file shares\nDates: 2026-04-01 to 2026-04-10 (10 shared dates)\nCash: 10,000.00  Final equity: 9,092.00\nReturn: -9.08%  Max drawdown: -9.08%  Buy & hold (equal weight): +20.00%\nSymbol  Bars used  Bars lost   Return  Trades  Buy&Hold\nAAA            10          0   +0.00%       1   +40.00%\nBBB            10          0  -18.16%       2    +0.00%\nWorst single-symbol drawdown: -18.16% (BBB)\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "csv": "date,portfolio,AAA,BBB\n2026-04-01,10000.00,5000.00,5000.00\n2026-04-02,10000.00,5000.00,5000.00\n2026-04-03,10000.00,5000.00,5000.00\n2026-04-04,10000.00,5000.00,5000.00\n2026-04-05,10000.00,5000.00,5000.00\n2026-04-06,10000.00,5000.00,5000.00\n2026-04-07,9773.00,5000.00,4773.00\n2026-04-08,9319.00,5000.00,4319.00\n2026-04-09,9092.00,5000.00,4092.00\n2026-04-10,9092.00,5000.00,4092.00\n"
+  },
+  {
+   "argv": [
+    "pf"
+   ],
+   "code": 1,
+   "stdout": "",
+   "stderr": "Error: only 10 dates shared by all 2 symbols; need at least 52 (long window 50 + 2)\n"
+  },
+  {
+   "argv": [
+    "pf",
+    "--json"
+   ],
+   "code": 1,
+   "stdout": "",
+   "stderr": "Error: only 10 dates shared by all 2 symbols; need at least 52 (long window 50 + 2)\n"
+  },
+  {
+   "argv": [
+    "one",
+    "--short",
+    "2",
+    "--long",
+    "3"
+   ],
+   "code": 1,
+   "stdout": "",
+   "stderr": "Error: only 1 of the 1 .csv files in one could be used (0 skipped); a portfolio needs at least 2\n"
+  },
+  {
+   "argv": [
+    "pf",
+    "--short",
+    "0"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: --short must be at least 1\n"
+  },
+  {
+   "argv": [
+    "pf",
+    "--short",
+    "3",
+    "--long",
+    "3"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: --short (3) must be smaller than --long (3)\n"
+  },
+  {
+   "argv": [
+    "pf",
+    "--weights",
+    "AAA=50"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: --weights must add up to 100, got 50\n"
+  },
+  {
+   "argv": [
+    "pf",
+    "--bogus"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --bogus\n"
+  },
+  {
+   "argv": [
+    "samples",
+    "--short",
+    "5",
+    "--long",
+    "20",
+    "--fee",
+    "1",
+    "--fee-pct",
+    "0.1"
+   ],
+   "code": 0,
+   "stdout": "Portfolio: 3 symbols, cash split equally, SMA 5/20 crossover, fee 1.00 + 0.10%, on the dates every file shares\nDates: 2023-01-02 to 2023-07-28 (150 shared dates)\nCash: 10,000.00  Final equity: 10,113.93\nReturn: +1.14%  Max drawdown: -6.42%  Buy & hold (equal weight): +4.18%\nSymbol     Bars used  Bars lost   Return  Trades  Buy&Hold\ndowntrend        150         50   -3.04%       4   -21.40%\nsideways         150          0  -22.22%      16    +3.27%\nuptrend          150         50  +28.67%       3   +30.67%\nWorst single-symbol drawdown: -25.69% (sideways)\nNote: dates not shared by every file were dropped (see Bars lost); nothing was filled in.\nResearch aid only. Not financial advice.\n",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "samples",
+    "--json"
+   ],
+   "code": 0,
+   "stdout": "{\n  \"summary\": {\n    \"short\": 20,\n    \"long\": 50,\n    \"fee\": 0.0,\n    \"fee_pct\": 0.0,\n    \"start_date\": \"2023-01-02\",\n    \"end_date\": \"2023-07-28\",\n    \"shared_dates\": 150,\n    \"initial_cash\": 10000.0,\n    \"final_equity\": 10848.470000000001,\n    \"return_pct\": 8.48470000000001,\n    \"max_drawdown_pct\": -2.1946300312596216,\n    \"buy_hold_return_pct\": 4.306500000000015,\n    \"worst_symbol_drawdown\": {\n      \"symbol\": \"sideways\",\n      \"max_drawdown_pct\": -8.630400000000009\n    },\n    \"symbols\": [\n      {\n        \"symbol\": \"downtrend\",\n        \"bars_used\": 150,\n        \"bars_lost\": 50,\n        \"return_pct\": 0.0,\n        \"trades\": 0,\n        \"buy_hold_return_pct\": -21.275100000000002\n      },\n      {\n        \"symbol\": \"sideways\",\n        \"bars_used\": 150,\n        \"bars_lost\": 0,\n        \"return_pct\": -6.433800000000028,\n        \"trades\": 6,\n        \"buy_hold_return_pct\": 3.3956999999999877\n      },\n      {\n        \"symbol\": \"uptrend\",\n        \"bars_used\": 150,\n        \"bars_lost\": 50,\n        \"return_pct\": 31.88790000000002,\n        \"trades\": 1,\n        \"buy_hold_return_pct\": 30.798900000000017\n      }\n    ]\n  },\n  \"skipped\": [],\n  \"disclaimer\": \"Research aid only. Not financial advice.\"\n}\n",
+   "stderr": ""
+  },
+  {
+   "argv": [
+    "pf",
+    "--help"
+   ],
+   "code": 0,
+   "stdout": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\n\nBacktest the SMA crossover on every .csv file in a folder, with the cash split\nequally (or by --weights), on the dates every file shares.\n\npositional arguments:\n  folder                folder whose .csv files (with 'date' and 'close'\n                        columns) are the symbols\n\noptions:\n  -h, --help            show this help message and exit\n  --short N             short SMA window (default: 20)\n  --long N              long SMA window (default: 50)\n  --cash AMOUNT         starting cash, split equally between the files or by\n                        --weights (default: 10,000)\n  --fee AMOUNT          fixed cost per trade (default: 0)\n  --fee-pct PCT         percent of traded value per trade (default: 0)\n  --json                print one JSON object (summary, skipped files,\n                        disclaimer) instead of the text\n  --weights SYMBOL=PCT [SYMBOL=PCT ...]\n                        split the cash by these percentages instead of\n                        equally, e.g. A=60 B=40: one per file used, each above\n                        0, adding up to 100\n  --csv OUT             also write one row per shared date to OUT: date,\n                        portfolio equity, then each symbol's equity\n\nResearch aid only. Not financial advice.\n",
+   "stderr": ""
+  }
+ ],
+ "abbreviations": [
+  {
+   "argv": [
+    "pf",
+    "--",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: 5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: ambiguous option: --=5 could match --help, --short, --long, --cash, --fee, --fee-pct, --json, --weights, --csv\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--c",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: ambiguous option: --c could match --cash, --csv\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--c=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: ambiguous option: --c=5 could match --cash, --csv\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--ca",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 5.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--ca=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 5.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--cas",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 5.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--cas=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 5.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--cash",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 5.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--cash=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 5.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--cs",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": "5"
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--cs=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": "5"
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--csv",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": "5"
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--csv=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": "5"
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--f",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: ambiguous option: --f could match --fee, --fee-pct\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--f=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: ambiguous option: --f=5 could match --fee, --fee-pct\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--fe",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: ambiguous option: --fe could match --fee, --fee-pct\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--fe=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: ambiguous option: --fe=5 could match --fee, --fee-pct\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--fee",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 5.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--fee=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 5.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--fee-",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 5.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--fee-=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 5.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--fee-p",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 5.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--fee-p=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 5.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--fee-pc",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 5.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--fee-pc=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 5.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--fee-pct",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 5.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--fee-pct=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 5.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--h",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\n\nBacktest the SMA crossover on every .csv file in a folder, with the cash split\nequally (or by --weights), on the dates every file shares.\n\npositional arguments:\n  folder                folder whose .csv files (with 'date' and 'close'\n                        columns) are the symbols\n\noptions:\n  -h, --help            show this help message and exit\n  --short N             short SMA window (default: 20)\n  --long N              long SMA window (default: 50)\n  --cash AMOUNT         starting cash, split equally between the files or by\n                        --weights (default: 10,000)\n  --fee AMOUNT          fixed cost per trade (default: 0)\n  --fee-pct PCT         percent of traded value per trade (default: 0)\n  --json                print one JSON object (summary, skipped files,\n                        disclaimer) instead of the text\n  --weights SYMBOL=PCT [SYMBOL=PCT ...]\n                        split the cash by these percentages instead of\n                        equally, e.g. A=60 B=40: one per file used, each above\n                        0, adding up to 100\n  --csv OUT             also write one row per shared date to OUT: date,\n                        portfolio equity, then each symbol's equity\n\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--h=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: argument -h/--help: ignored explicit argument '5'\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--he",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\n\nBacktest the SMA crossover on every .csv file in a folder, with the cash split\nequally (or by --weights), on the dates every file shares.\n\npositional arguments:\n  folder                folder whose .csv files (with 'date' and 'close'\n                        columns) are the symbols\n\noptions:\n  -h, --help            show this help message and exit\n  --short N             short SMA window (default: 20)\n  --long N              long SMA window (default: 50)\n  --cash AMOUNT         starting cash, split equally between the files or by\n                        --weights (default: 10,000)\n  --fee AMOUNT          fixed cost per trade (default: 0)\n  --fee-pct PCT         percent of traded value per trade (default: 0)\n  --json                print one JSON object (summary, skipped files,\n                        disclaimer) instead of the text\n  --weights SYMBOL=PCT [SYMBOL=PCT ...]\n                        split the cash by these percentages instead of\n                        equally, e.g. A=60 B=40: one per file used, each above\n                        0, adding up to 100\n  --csv OUT             also write one row per shared date to OUT: date,\n                        portfolio equity, then each symbol's equity\n\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--he=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: argument -h/--help: ignored explicit argument '5'\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--hel",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\n\nBacktest the SMA crossover on every .csv file in a folder, with the cash split\nequally (or by --weights), on the dates every file shares.\n\npositional arguments:\n  folder                folder whose .csv files (with 'date' and 'close'\n                        columns) are the symbols\n\noptions:\n  -h, --help            show this help message and exit\n  --short N             short SMA window (default: 20)\n  --long N              long SMA window (default: 50)\n  --cash AMOUNT         starting cash, split equally between the files or by\n                        --weights (default: 10,000)\n  --fee AMOUNT          fixed cost per trade (default: 0)\n  --fee-pct PCT         percent of traded value per trade (default: 0)\n  --json                print one JSON object (summary, skipped files,\n                        disclaimer) instead of the text\n  --weights SYMBOL=PCT [SYMBOL=PCT ...]\n                        split the cash by these percentages instead of\n                        equally, e.g. A=60 B=40: one per file used, each above\n                        0, adding up to 100\n  --csv OUT             also write one row per shared date to OUT: date,\n                        portfolio equity, then each symbol's equity\n\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--hel=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: argument -h/--help: ignored explicit argument '5'\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--help",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\n\nBacktest the SMA crossover on every .csv file in a folder, with the cash split\nequally (or by --weights), on the dates every file shares.\n\npositional arguments:\n  folder                folder whose .csv files (with 'date' and 'close'\n                        columns) are the symbols\n\noptions:\n  -h, --help            show this help message and exit\n  --short N             short SMA window (default: 20)\n  --long N              long SMA window (default: 50)\n  --cash AMOUNT         starting cash, split equally between the files or by\n                        --weights (default: 10,000)\n  --fee AMOUNT          fixed cost per trade (default: 0)\n  --fee-pct PCT         percent of traded value per trade (default: 0)\n  --json                print one JSON object (summary, skipped files,\n                        disclaimer) instead of the text\n  --weights SYMBOL=PCT [SYMBOL=PCT ...]\n                        split the cash by these percentages instead of\n                        equally, e.g. A=60 B=40: one per file used, each above\n                        0, adding up to 100\n  --csv OUT             also write one row per shared date to OUT: date,\n                        portfolio equity, then each symbol's equity\n\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--help=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: argument -h/--help: ignored explicit argument '5'\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--j",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: 5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--j=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: argument --json: ignored explicit argument '5'\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--js",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: 5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--js=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: argument --json: ignored explicit argument '5'\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--jso",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: 5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--jso=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: argument --json: ignored explicit argument '5'\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--json",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: 5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--json=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: argument --json: ignored explicit argument '5'\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--l",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 5,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--l=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 5,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--lo",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 5,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--lo=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 5,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--lon",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 5,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--lon=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 5,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--long",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 5,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--long=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 5,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--p",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --p 5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--p=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --p=5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--pa",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --pa 5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--pa=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --pa=5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--par",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --par 5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--par=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --par=5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--para",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --para 5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--para=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --para=5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--param",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --param 5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--param=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --param=5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--s",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 5,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--s=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 5,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--sh",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 5,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--sh=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 5,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--sho",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 5,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--sho=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 5,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--shor",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 5,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--shor=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 5,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--short",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 5,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--short=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 5,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": null,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--st",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --st 5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--st=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --st=5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--str",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --str 5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--str=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --str=5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--stra",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --stra 5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--stra=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --stra=5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--strat",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --strat 5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--strat=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --strat=5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--strate",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --strate 5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--strate=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --strate=5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--strateg",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --strateg 5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--strateg=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --strateg=5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--strategy",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --strategy 5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--strategy=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: --strategy=5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "--w",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": [
+     "5"
+    ],
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--w=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": [
+     "5"
+    ],
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--we",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": [
+     "5"
+    ],
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--we=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": [
+     "5"
+    ],
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--wei",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": [
+     "5"
+    ],
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--wei=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": [
+     "5"
+    ],
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--weig",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": [
+     "5"
+    ],
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--weig=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": [
+     "5"
+    ],
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--weigh",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": [
+     "5"
+    ],
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--weigh=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": [
+     "5"
+    ],
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--weight",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": [
+     "5"
+    ],
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--weight=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": [
+     "5"
+    ],
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--weights",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": [
+     "5"
+    ],
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "--weights=5"
+   ],
+   "code": 0,
+   "stdout": "",
+   "stderr": "",
+   "namespace": {
+    "folder": "pf",
+    "short": 20,
+    "long": 50,
+    "cash": 10000.0,
+    "fee": 0.0,
+    "fee_pct": 0.0,
+    "json": false,
+    "weights": [
+     "5"
+    ],
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "pf",
+    "-h",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\n\nBacktest the SMA crossover on every .csv file in a folder, with the cash split\nequally (or by --weights), on the dates every file shares.\n\npositional arguments:\n  folder                folder whose .csv files (with 'date' and 'close'\n                        columns) are the symbols\n\noptions:\n  -h, --help            show this help message and exit\n  --short N             short SMA window (default: 20)\n  --long N              long SMA window (default: 50)\n  --cash AMOUNT         starting cash, split equally between the files or by\n                        --weights (default: 10,000)\n  --fee AMOUNT          fixed cost per trade (default: 0)\n  --fee-pct PCT         percent of traded value per trade (default: 0)\n  --json                print one JSON object (summary, skipped files,\n                        disclaimer) instead of the text\n  --weights SYMBOL=PCT [SYMBOL=PCT ...]\n                        split the cash by these percentages instead of\n                        equally, e.g. A=60 B=40: one per file used, each above\n                        0, adding up to 100\n  --csv OUT             also write one row per shared date to OUT: date,\n                        portfolio equity, then each symbol's equity\n\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "-h=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: argument -h/--help: ignored explicit argument '5'\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "-p",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: -p 5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "-p=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: -p=5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "-s",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: -s 5\n",
+   "namespace": null
+  },
+  {
+   "argv": [
+    "pf",
+    "-s=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.portfolio [-h] [--short N] [--long N] [--cash AMOUNT]\n                                   [--fee AMOUNT] [--fee-pct PCT] [--json]\n                                   [--weights SYMBOL=PCT [SYMBOL=PCT ...]]\n                                   [--csv OUT]\n                                   folder\ntrading_assistant.portfolio: error: unrecognized arguments: -s=5\n",
+   "namespace": null
+  }
+ ]
+}

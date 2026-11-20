@@ -1,0 +1,444 @@
+{
+ "plain": {
+  "fills": [
+   [
+    4,
+    "BUY",
+    90,
+    11.0,
+    10.0,
+    "signal"
+   ],
+   [
+    7,
+    "SELL",
+    90,
+    10.0,
+    910.0,
+    "signal"
+   ],
+   [
+    9,
+    "BUY",
+    75,
+    12.0,
+    10.0,
+    "signal"
+   ]
+  ],
+  "equity": 925.0,
+  "report": [
+   "Backtest: SMA 1/2 crossover, next-bar fills, whole shares, no shorting",
+   "  Start cash:  1,000.00",
+   "  Trades:      3 (2 buy, 1 sell)",
+   "  Fills (bar index is 0-based):",
+   "    #1   bar 4     BUY        90 @      11.00  value       990.00  cost     0.00  cash        10.00",
+   "    #2   bar 7     SELL       90 @      10.00  value       900.00  cost     0.00  cash       910.00",
+   "    #3   bar 9     BUY        75 @      12.00  value       900.00  cost     0.00  cash        10.00",
+   "  Costs:       0.00 paid (fee 0.00 per trade + 0.00% of value)",
+   "  Round trips: 1 completed, 0 made money (0%)",
+   "  Comparison              Strategy    Buy & hold",
+   "    End equity              925.00      1,220.00",
+   "    Return                  -7.50%       +22.00%",
+   "    Max drawdown           -16.51%       -20.00%",
+   "    Trades                       3             1",
+   "    Costs paid                0.00          0.00",
+   "  End cash:    10.00",
+   "  End shares:  75 @ 12.20",
+   "  End equity:  925.00",
+   "  Return:      -7.50%"
+  ]
+ },
+ "stop": {
+  "fills": [
+   [
+    4,
+    "BUY",
+    90,
+    11.0,
+    10.0,
+    "signal"
+   ],
+   [
+    6,
+    "SELL",
+    90,
+    10.45,
+    950.5,
+    "stop"
+   ],
+   [
+    9,
+    "BUY",
+    79,
+    12.0,
+    2.5,
+    "signal"
+   ]
+  ],
+  "equity": 966.3,
+  "report": [
+   "Backtest: SMA 1/2 crossover, next-bar fills, whole shares, no shorting",
+   "  Start cash:  1,000.00",
+   "  Trades:      3 (2 buy, 1 sell)",
+   "  Fills (bar index is 0-based):",
+   "    #1   bar 4     BUY        90 @      11.00  value       990.00  cost     0.00  cash        10.00  signal",
+   "    #2   bar 6     SELL       90 @      10.45  value       940.50  cost     0.00  cash       950.50  stop",
+   "    #3   bar 9     BUY        79 @      12.00  value       948.00  cost     0.00  cash         2.50  signal",
+   "  Costs:       0.00 paid (fee 0.00 per trade + 0.00% of value)",
+   "  Exits:       stop 5.00% below entry",
+   "  Round trips: 1 completed, 0 made money (0%)",
+   "  Comparison              Strategy    Buy & hold",
+   "    End equity              966.30      1,220.00",
+   "    Return                  -3.37%       +22.00%",
+   "    Max drawdown           -12.80%       -20.00%",
+   "    Trades                       3             1",
+   "    Costs paid                0.00          0.00",
+   "  End cash:    2.50",
+   "  End shares:  79 @ 12.20",
+   "  End equity:  966.30",
+   "  Return:      -3.37%"
+  ]
+ },
+ "target": {
+  "fills": [
+   [
+    4,
+    "BUY",
+    90,
+    11.0,
+    10.0,
+    "signal"
+   ],
+   [
+    5,
+    "SELL",
+    90,
+    11.55,
+    1049.5,
+    "target"
+   ],
+   [
+    9,
+    "BUY",
+    87,
+    12.0,
+    5.5,
+    "signal"
+   ]
+  ],
+  "equity": 1066.9,
+  "report": [
+   "Backtest: SMA 1/2 crossover, next-bar fills, whole shares, no shorting",
+   "  Start cash:  1,000.00",
+   "  Trades:      3 (2 buy, 1 sell)",
+   "  Fills (bar index is 0-based):",
+   "    #1   bar 4     BUY        90 @      11.00  value       990.00  cost     0.00  cash        10.00  signal",
+   "    #2   bar 5     SELL       90 @      11.55  value     1,039.50  cost     0.00  cash     1,049.50  target",
+   "    #3   bar 9     BUY        87 @      12.00  value     1,044.00  cost     0.00  cash         5.50  signal",
+   "  Costs:       0.00 paid (fee 0.00 per trade + 0.00% of value)",
+   "  Exits:       target 5.00% above entry",
+   "  Round trips: 1 completed, 1 made money (100%)",
+   "  Comparison              Strategy    Buy & hold",
+   "    End equity            1,066.90      1,220.00",
+   "    Return                  +6.69%       +22.00%",
+   "    Max drawdown             0.00%       -20.00%",
+   "    Trades                       3             1",
+   "    Costs paid                0.00          0.00",
+   "  End cash:    5.50",
+   "  End shares:  87 @ 12.20",
+   "  End equity:  1,066.90",
+   "  Return:      +6.69%"
+  ]
+ },
+ "trail": {
+  "fills": [
+   [
+    4,
+    "BUY",
+    90,
+    11.0,
+    10.0,
+    "signal"
+   ],
+   [
+    6,
+    "SELL",
+    90,
+    10.8,
+    982.0,
+    "trail"
+   ],
+   [
+    9,
+    "BUY",
+    81,
+    12.0,
+    10.0,
+    "signal"
+   ]
+  ],
+  "equity": 998.2,
+  "report": [
+   "Backtest: SMA 1/2 crossover, next-bar fills, whole shares, no shorting",
+   "  Start cash:  1,000.00",
+   "  Trades:      3 (2 buy, 1 sell)",
+   "  Fills (bar index is 0-based):",
+   "    #1   bar 4     BUY        90 @      11.00  value       990.00  cost     0.00  cash        10.00  signal",
+   "    #2   bar 6     SELL       90 @      10.80  value       972.00  cost     0.00  cash       982.00  trail",
+   "    #3   bar 9     BUY        81 @      12.00  value       972.00  cost     0.00  cash        10.00  signal",
+   "  Costs:       0.00 paid (fee 0.00 per trade + 0.00% of value)",
+   "  Exits:       trail 10.00% below the highest high since entry",
+   "  Round trips: 1 completed, 0 made money (0%)",
+   "  Comparison              Strategy    Buy & hold",
+   "    End equity              998.20      1,220.00",
+   "    Return                  -0.18%       +22.00%",
+   "    Max drawdown            -9.91%       -20.00%",
+   "    Trades                       3             1",
+   "    Costs paid                0.00          0.00",
+   "  End cash:    10.00",
+   "  End shares:  81 @ 12.20",
+   "  End equity:  998.20",
+   "  Return:      -0.18%"
+  ]
+ },
+ "atr": {
+  "fills": [
+   [
+    4,
+    "BUY",
+    90,
+    11.0,
+    10.0,
+    "signal"
+   ],
+   [
+    6,
+    "SELL",
+    90,
+    9.5625,
+    870.625,
+    "atr"
+   ],
+   [
+    9,
+    "BUY",
+    72,
+    12.0,
+    6.625,
+    "signal"
+   ]
+  ],
+  "equity": 885.025,
+  "report": [
+   "Backtest: SMA 1/2 crossover, next-bar fills, whole shares, no shorting",
+   "  Start cash:  1,000.00",
+   "  Trades:      3 (2 buy, 1 sell)",
+   "  Fills (bar index is 0-based):",
+   "    #1   bar 4     BUY        90 @      11.00  value       990.00  cost     0.00  cash        10.00  signal",
+   "    #2   bar 6     SELL       90 @       9.56  value       860.62  cost     0.00  cash       870.62  atr",
+   "    #3   bar 9     BUY        72 @      12.00  value       864.00  cost     0.00  cash         6.62  signal",
+   "  Costs:       0.00 paid (fee 0.00 per trade + 0.00% of value)",
+   "  Exits:       atr 1 x ATR(2) below entry",
+   "  Round trips: 1 completed, 0 made money (0%)",
+   "  Comparison              Strategy    Buy & hold",
+   "    End equity              885.02      1,220.00",
+   "    Return                 -11.50%       +22.00%",
+   "    Max drawdown           -20.13%       -20.00%",
+   "    Trades                       3             1",
+   "    Costs paid                0.00          0.00",
+   "  End cash:    6.62",
+   "  End shares:  72 @ 12.20",
+   "  End equity:  885.02",
+   "  Return:      -11.50%"
+  ]
+ },
+ "all_stops": {
+  "fills": [
+   [
+    4,
+    "BUY",
+    90,
+    11.0,
+    10.0,
+    "signal"
+   ],
+   [
+    6,
+    "SELL",
+    90,
+    10.8,
+    982.0,
+    "trail"
+   ],
+   [
+    9,
+    "BUY",
+    81,
+    12.0,
+    10.0,
+    "signal"
+   ]
+  ],
+  "equity": 998.2,
+  "report": [
+   "Backtest: SMA 1/2 crossover, next-bar fills, whole shares, no shorting",
+   "  Start cash:  1,000.00",
+   "  Trades:      3 (2 buy, 1 sell)",
+   "  Fills (bar index is 0-based):",
+   "    #1   bar 4     BUY        90 @      11.00  value       990.00  cost     0.00  cash        10.00  signal",
+   "    #2   bar 6     SELL       90 @      10.80  value       972.00  cost     0.00  cash       982.00  trail",
+   "    #3   bar 9     BUY        81 @      12.00  value       972.00  cost     0.00  cash        10.00  signal",
+   "  Costs:       0.00 paid (fee 0.00 per trade + 0.00% of value)",
+   "  Exits:       stop 5.00% below entry, trail 10.00% below the highest high since entry, atr 1 x ATR(2) below entry, target 20.00% above entry (the highest of stop, trail and atr is used, in that order on a tie; it wins if a bar also touches the target)",
+   "  Round trips: 1 completed, 0 made money (0%)",
+   "  Comparison              Strategy    Buy & hold",
+   "    End equity              998.20      1,220.00",
+   "    Return                  -0.18%       +22.00%",
+   "    Max drawdown            -9.91%       -20.00%",
+   "    Trades                       3             1",
+   "    Costs paid                0.00          0.00",
+   "  End cash:    10.00",
+   "  End shares:  81 @ 12.20",
+   "  End equity:  998.20",
+   "  Return:      -0.18%"
+  ]
+ },
+ "stop_cooldown": {
+  "fills": [
+   [
+    4,
+    "BUY",
+    90,
+    11.0,
+    10.0,
+    "signal"
+   ],
+   [
+    6,
+    "SELL",
+    90,
+    10.45,
+    950.5,
+    "stop"
+   ]
+  ],
+  "equity": 950.5,
+  "report": [
+   "Backtest: SMA 1/2 crossover, next-bar fills, whole shares, no shorting",
+   "  Start cash:  1,000.00",
+   "  Trades:      2 (1 buy, 1 sell)",
+   "  Fills (bar index is 0-based):",
+   "    #1   bar 4     BUY        90 @      11.00  value       990.00  cost     0.00  cash        10.00  signal",
+   "    #2   bar 6     SELL       90 @      10.45  value       940.50  cost     0.00  cash       950.50  stop",
+   "  Costs:       0.00 paid (fee 0.00 per trade + 0.00% of value)",
+   "  Exits:       stop 5.00% below entry",
+   "  Cooldown:    3 bars after a stop, trail or atr exit; 1 buy skipped",
+   "  Round trips: 1 completed, 0 made money (0%)",
+   "  Comparison              Strategy    Buy & hold",
+   "    End equity              950.50      1,220.00",
+   "    Return                  -4.95%       +22.00%",
+   "    Max drawdown           -12.80%       -20.00%",
+   "    Trades                       2             1",
+   "    Costs paid                0.00          0.00",
+   "  End cash:    950.50",
+   "  End shares:  0 @ 12.20",
+   "  End equity:  950.50",
+   "  Return:      -4.95%"
+  ]
+ },
+ "open_trail": {
+  "fills": [
+   [
+    4,
+    "BUY",
+    92,
+    10.8,
+    6.4,
+    "signal"
+   ],
+   [
+    6,
+    "SELL",
+    92,
+    10.8,
+    1000.0,
+    "trail"
+   ],
+   [
+    9,
+    "BUY",
+    92,
+    10.8,
+    6.4,
+    "signal"
+   ]
+  ],
+  "equity": 1128.8,
+  "report": [
+   "Backtest: SMA 1/2 crossover, next-bar open fills, whole shares, no shorting",
+   "  Start cash:  1,000.00",
+   "  Trades:      3 (2 buy, 1 sell)",
+   "  Fills (bar index is 0-based):",
+   "    #1   bar 4     BUY        92 @      10.80  value       993.60  cost     0.00  cash         6.40  signal",
+   "    #2   bar 6     SELL       92 @      10.80  value       993.60  cost     0.00  cash     1,000.00  trail",
+   "    #3   bar 9     BUY        92 @      10.80  value       993.60  cost     0.00  cash         6.40  signal",
+   "  Costs:       0.00 paid (fee 0.00 per trade + 0.00% of value)",
+   "  Exits:       trail 10.00% below the highest high since entry",
+   "  Round trips: 1 completed, 0 made money (0%)",
+   "  Comparison              Strategy    Buy & hold",
+   "    End equity            1,128.80      1,220.00",
+   "    Return                 +12.88%       +22.00%",
+   "    Max drawdown            -9.94%       -20.00%",
+   "    Trades                       3             1",
+   "    Costs paid                0.00          0.00",
+   "  End cash:    6.40",
+   "  End shares:  92 @ 12.20",
+   "  End equity:  1,128.80",
+   "  Return:      +12.88%"
+  ]
+ },
+ "max_hold_dd": {
+  "fills": [
+   [
+    4,
+    "BUY",
+    90,
+    11.0,
+    10.0,
+    "signal"
+   ],
+   [
+    6,
+    "SELL",
+    90,
+    10.0,
+    910.0,
+    "time"
+   ]
+  ],
+  "equity": 910.0,
+  "report": [
+   "Backtest: SMA 1/2 crossover, next-bar fills, whole shares, no shorting",
+   "  Start cash:  1,000.00",
+   "  Trades:      2 (1 buy, 1 sell)",
+   "  Fills (bar index is 0-based):",
+   "    #1   bar 4     BUY        90 @      11.00  value       990.00  cost     0.00  cash        10.00  signal",
+   "    #2   bar 6     SELL       90 @      10.00  value       900.00  cost     0.00  cash       910.00  time",
+   "  Costs:       0.00 paid (fee 0.00 per trade + 0.00% of value)",
+   "  Max hold:    2 bars after a position's first buy, then sold at the bar's fill price; 1 time exit",
+   "  Drawdown:    halt at 5.00% below the peak account value at a close; triggered at bar 6, no buy fills after it; 1 buy skipped",
+   "  Round trips: 1 completed, 0 made money (0%)",
+   "  Comparison              Strategy    Buy & hold",
+   "    End equity              910.00      1,220.00",
+   "    Return                  -9.00%       +22.00%",
+   "    Max drawdown           -16.51%       -20.00%",
+   "    Trades                       2             1",
+   "    Costs paid                0.00          0.00",
+   "  End cash:    910.00",
+   "  End shares:  0 @ 12.20",
+   "  End equity:  910.00",
+   "  Return:      -9.00%"
+  ]
+ }
+}

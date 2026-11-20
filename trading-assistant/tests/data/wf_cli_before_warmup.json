@@ -1,0 +1,79 @@
+{
+ "one_window_text": {
+  "args": [
+   "--short",
+   "1",
+   "--long",
+   "3",
+   "--train",
+   "12",
+   "--test",
+   "6",
+   "--cash",
+   "1000"
+  ],
+  "exit": 0,
+  "stdout": "Walk-forward: 1 window; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-17     1/3    +0.00%    +0.00%   +40.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +40.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 1\nWindows without test trades: 1 of 1\nNote: 1 of 1 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+  "stderr": "",
+  "csv": null
+ },
+ "one_window_json": {
+  "args": [
+   "--short",
+   "1",
+   "--long",
+   "3",
+   "--train",
+   "12",
+   "--test",
+   "6",
+   "--cash",
+   "1000",
+   "--json"
+  ],
+  "exit": 0,
+  "stdout": "{\n  \"windows\": [\n    {\n      \"window\": 1,\n      \"train_start\": 0,\n      \"train_end\": 12,\n      \"test_start\": 12,\n      \"test_end\": 18,\n      \"short\": 1,\n      \"long\": 3,\n      \"train_return_pct\": 0.0,\n      \"test_return_pct\": 0.0,\n      \"test_max_drawdown_pct\": 0.0,\n      \"test_trades\": 0,\n      \"buy_hold_return_pct\": 40.0\n    }\n  ],\n  \"summary\": {\n    \"windows\": 1,\n    \"compound_test_return_pct\": 0.0,\n    \"compound_buy_hold_return_pct\": 39.99999999999999,\n    \"windows_beating_buy_hold\": 0,\n    \"mean_test_return_pct\": 0.0,\n    \"windows_without_trades\": 1,\n    \"test_blocks_contiguous\": true\n  },\n  \"overfit_warning\": \"Best in-sample parameters overfit; check them on data they were not chosen on.\",\n  \"disclaimer\": \"Research aid only. Not financial advice.\"\n}\n",
+  "stderr": "",
+  "csv": null
+ },
+ "two_windows_fee_csv": {
+  "args": [
+   "--short",
+   "2",
+   "--long",
+   "3",
+   "--train",
+   "6",
+   "--test",
+   "6",
+   "--cash",
+   "1000",
+   "--fee",
+   "1",
+   "--csv",
+   "out.csv"
+  ],
+  "exit": 0,
+  "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1         0-5        6-11     2/3    +0.00%    +0.00%    +9.80%      0\n     2        6-11       12-17     2/3    +0.00%    +0.00%   +39.50%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +53.17%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nWrote 2 rows to out.csv\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+  "stderr": "",
+  "csv": "window,train_start,train_end,test_start,test_end,short,long,train_return_pct,test_return_pct,test_max_drawdown_pct,test_trades,buy_hold_return_pct\n1,0,6,6,12,2,3,0.0000,0.0000,0.0000,0,9.8000\n2,6,12,12,18,2,3,0.0000,0.0000,0.0000,0,39.5000\n"
+ },
+ "overlap_step_text": {
+  "args": [
+   "--short",
+   "1,2",
+   "--long",
+   "3",
+   "--train",
+   "7",
+   "--test",
+   "4",
+   "--step",
+   "3"
+  ],
+  "exit": 0,
+  "stdout": "Walk-forward: 3 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1         0-6        7-10     1/3    +0.00%    +0.00%    +9.09%      0\n     2         3-9       10-13     1/3   +18.18%    +0.00%    -8.33%      0\n     3        6-12       13-16     1/3    +0.00%    +0.00%   +36.36%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +36.36%\nMean test return per window: +0.00%\nWindows beating buy & hold: 1 of 3\nWindows without test trades: 3 of 3\nNote: the test blocks overlap or leave gaps (step is not equal to test), so the compounded figures do not describe one continuous stretch of prices.\nNote: 3 of 3 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+  "stderr": "",
+  "csv": null
+ }
+}

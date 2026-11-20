@@ -1,0 +1,4315 @@
+{
+ "note": "Recorded from git HEAD 924f482 (before --strategy/--grid/--param) with Python 3.12.3, COLUMNS=80, in a folder holding wf.csv (tests/data/wf.csv) and sideways.csv (samples.sample_csv_rows('sideways')). files: what the run left in the folder.",
+ "commands": [
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1,2",
+    "--long",
+    "3,4",
+    "--train",
+    "7",
+    "--test",
+    "4",
+    "--cash",
+    "1000"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1         0-6        7-10     1/3    +0.00%    +0.00%    +9.00%      0\n     2        4-10       11-14     1/3    +0.00%    +0.00%   +18.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +28.62%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {}
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1,2",
+    "--long",
+    "3,4",
+    "--train",
+    "7",
+    "--test",
+    "4",
+    "--cash",
+    "1000",
+    "--json"
+   ],
+   "code": 0,
+   "stdout": "{\n  \"windows\": [\n    {\n      \"window\": 1,\n      \"train_start\": 0,\n      \"train_end\": 7,\n      \"test_start\": 7,\n      \"test_end\": 11,\n      \"short\": 1,\n      \"long\": 3,\n      \"train_return_pct\": 0.0,\n      \"test_return_pct\": 0.0,\n      \"test_max_drawdown_pct\": 0.0,\n      \"test_trades\": 0,\n      \"buy_hold_return_pct\": 9.0\n    },\n    {\n      \"window\": 2,\n      \"train_start\": 4,\n      \"train_end\": 11,\n      \"test_start\": 11,\n      \"test_end\": 15,\n      \"short\": 1,\n      \"long\": 3,\n      \"train_return_pct\": 0.0,\n      \"test_return_pct\": 0.0,\n      \"test_max_drawdown_pct\": 0.0,\n      \"test_trades\": 0,\n      \"buy_hold_return_pct\": 18.0\n    }\n  ],\n  \"summary\": {\n    \"windows\": 2,\n    \"compound_test_return_pct\": 0.0,\n    \"compound_buy_hold_return_pct\": 28.62,\n    \"windows_beating_buy_hold\": 0,\n    \"mean_test_return_pct\": 0.0,\n    \"windows_without_trades\": 2,\n    \"test_blocks_contiguous\": true\n  },\n  \"overfit_warning\": \"Best in-sample parameters overfit; check them on data they were not chosen on.\",\n  \"disclaimer\": \"Research aid only. Not financial advice.\"\n}\n",
+   "stderr": "",
+   "files": {}
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1,2",
+    "--long",
+    "3,4",
+    "--train",
+    "7",
+    "--test",
+    "4",
+    "--cash",
+    "1000",
+    "--csv",
+    "out.csv"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1         0-6        7-10     1/3    +0.00%    +0.00%    +9.00%      0\n     2        4-10       11-14     1/3    +0.00%    +0.00%   +18.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +28.62%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nWrote 2 rows to out.csv\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {
+    "out.csv": "window,train_start,train_end,test_start,test_end,short,long,train_return_pct,test_return_pct,test_max_drawdown_pct,test_trades,buy_hold_return_pct\n1,0,7,7,11,1,3,0.0000,0.0000,0.0000,0,9.0000\n2,4,11,11,15,1,3,0.0000,0.0000,0.0000,0,18.0000\n"
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1,2",
+    "--long",
+    "3,4",
+    "--train",
+    "7",
+    "--test",
+    "4",
+    "--cash",
+    "1000",
+    "--warmup"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then traded and scored on the test bars after them, with its moving averages warmed up on up to long bars just before each test block\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1         0-6        7-10     1/3    +0.00%    +0.00%    +9.00%      0\n     2        4-10       11-14     1/3    +0.00%    +0.00%   +18.00%      1\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +28.62%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 1 of 2\nNote: 1 of 2 windows made no trades in the test block (no BUY crossover on a test bar before its last, or, near the start of the data, fewer than long bars before the block to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {}
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1,2",
+    "--long",
+    "3,4",
+    "--train",
+    "7",
+    "--test",
+    "4",
+    "--cash",
+    "1000",
+    "--warmup",
+    "--json",
+    "--csv",
+    "out.csv"
+   ],
+   "code": 0,
+   "stdout": "{\n  \"warmup\": true,\n  \"windows\": [\n    {\n      \"window\": 1,\n      \"train_start\": 0,\n      \"train_end\": 7,\n      \"test_start\": 7,\n      \"test_end\": 11,\n      \"short\": 1,\n      \"long\": 3,\n      \"train_return_pct\": 0.0,\n      \"test_return_pct\": 0.0,\n      \"test_max_drawdown_pct\": 0.0,\n      \"test_trades\": 0,\n      \"buy_hold_return_pct\": 9.0\n    },\n    {\n      \"window\": 2,\n      \"train_start\": 4,\n      \"train_end\": 11,\n      \"test_start\": 11,\n      \"test_end\": 15,\n      \"short\": 1,\n      \"long\": 3,\n      \"train_return_pct\": 0.0,\n      \"test_return_pct\": 0.0,\n      \"test_max_drawdown_pct\": 0.0,\n      \"test_trades\": 1,\n      \"buy_hold_return_pct\": 18.0\n    }\n  ],\n  \"summary\": {\n    \"windows\": 2,\n    \"compound_test_return_pct\": 0.0,\n    \"compound_buy_hold_return_pct\": 28.62,\n    \"windows_beating_buy_hold\": 0,\n    \"mean_test_return_pct\": 0.0,\n    \"windows_without_trades\": 1,\n    \"test_blocks_contiguous\": true\n  },\n  \"overfit_warning\": \"Best in-sample parameters overfit; check them on data they were not chosen on.\",\n  \"disclaimer\": \"Research aid only. Not financial advice.\"\n}\n",
+   "stderr": "",
+   "files": {
+    "out.csv": "window,train_start,train_end,test_start,test_end,short,long,train_return_pct,test_return_pct,test_max_drawdown_pct,test_trades,buy_hold_return_pct\n1,0,7,7,11,1,3,0.0000,0.0000,0.0000,0,9.0000\n2,4,11,11,15,1,3,0.0000,0.0000,0.0000,1,18.0000\n"
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1,2",
+    "--long",
+    "3",
+    "--train",
+    "7",
+    "--test",
+    "4",
+    "--step",
+    "3",
+    "--fee",
+    "1",
+    "--fee-pct",
+    "0.1"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 3 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1         0-6        7-10     1/3    +0.00%    +0.00%    +8.97%      0\n     2         3-9       10-13     1/3   +18.05%    +0.00%    -8.43%      0\n     3        6-12       13-16     1/3    +0.00%    +0.00%   +36.21%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +35.92%\nMean test return per window: +0.00%\nWindows beating buy & hold: 1 of 3\nWindows without test trades: 3 of 3\nNote: the test blocks overlap or leave gaps (step is not equal to test), so the compounded figures do not describe one continuous stretch of prices.\nNote: 3 of 3 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {}
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "6",
+    "--cash",
+    "1000"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 1 window; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-17     1/3    +0.00%    +0.00%   +40.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +40.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 1\nWindows without test trades: 1 of 1\nNote: 1 of 1 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {}
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "6",
+    "--cash",
+    "1000",
+    "--warmup"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 1 window; each SMA crossover pair was chosen on its train bars only, then traded and scored on the test bars after them, with its moving averages warmed up on up to long bars just before each test block\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-17     1/3    +0.00%    +7.60%   +40.00%      1\nTest return, compounded over the windows: +7.60%\nBuy & hold, compounded over the windows:  +40.00%\nMean test return per window: +7.60%\nWindows beating buy & hold: 0 of 1\nWindows without test trades: 0 of 1\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {}
+  },
+  {
+   "argv": [
+    "sideways.csv",
+    "--short",
+    "2,3,5",
+    "--long",
+    "5,10,20",
+    "--train",
+    "40",
+    "--test",
+    "20"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 5 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-39       40-59    3/20    +6.36%    +0.00%    -1.33%      0\n     2       20-59       60-79    5/10    -4.59%    -3.56%    +1.86%      1\n     3       40-79       80-99    3/10    +0.74%    +2.34%    -1.45%      1\n     4       60-99     100-119     3/5    +0.35%    -8.10%    +0.60%      2\n     5      80-119     120-139    3/10    -5.74%    +3.84%    +2.58%      3\nTest return, compounded over the windows: -5.82%\nBuy & hold, compounded over the windows:  +2.21%\nMean test return per window: -1.10%\nWindows beating buy & hold: 3 of 5\nWindows without test trades: 1 of 5\nNote: 1 of 5 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {}
+  },
+  {
+   "argv": [
+    "sideways.csv",
+    "--short",
+    "2,3,5",
+    "--long",
+    "5,10,20",
+    "--train",
+    "40",
+    "--test",
+    "20",
+    "--json"
+   ],
+   "code": 0,
+   "stdout": "{\n  \"windows\": [\n    {\n      \"window\": 1,\n      \"train_start\": 0,\n      \"train_end\": 40,\n      \"test_start\": 40,\n      \"test_end\": 60,\n      \"short\": 3,\n      \"long\": 20,\n      \"train_return_pct\": 6.363199999999979,\n      \"test_return_pct\": 0.0,\n      \"test_max_drawdown_pct\": 0.0,\n      \"test_trades\": 0,\n      \"buy_hold_return_pct\": -1.3265999999999987\n    },\n    {\n      \"window\": 2,\n      \"train_start\": 20,\n      \"train_end\": 60,\n      \"test_start\": 60,\n      \"test_end\": 80,\n      \"short\": 5,\n      \"long\": 10,\n      \"train_return_pct\": -4.5864999999999965,\n      \"test_return_pct\": -3.562600000000002,\n      \"test_max_drawdown_pct\": -6.551800000000004,\n      \"test_trades\": 1,\n      \"buy_hold_return_pct\": 1.86119999999999\n    },\n    {\n      \"window\": 3,\n      \"train_start\": 40,\n      \"train_end\": 80,\n      \"test_start\": 80,\n      \"test_end\": 100,\n      \"short\": 3,\n      \"long\": 10,\n      \"train_return_pct\": 0.7424000000000159,\n      \"test_return_pct\": 2.336399999999994,\n      \"test_max_drawdown_pct\": -1.3268410268771902,\n      \"test_trades\": 1,\n      \"buy_hold_return_pct\": -1.4534999999999856\n    },\n    {\n      \"window\": 4,\n      \"train_start\": 60,\n      \"train_end\": 100,\n      \"test_start\": 100,\n      \"test_end\": 120,\n      \"short\": 3,\n      \"long\": 5,\n      \"train_return_pct\": 0.35330000000001743,\n      \"test_return_pct\": -8.103499999999986,\n      \"test_max_drawdown_pct\": -8.103499999999986,\n      \"test_trades\": 2,\n      \"buy_hold_return_pct\": 0.5959000000000014\n    },\n    {\n      \"window\": 5,\n      \"train_start\": 80,\n      \"train_end\": 120,\n      \"test_start\": 120,\n      \"test_end\": 140,\n      \"short\": 3,\n      \"long\": 10,\n      \"train_return_pct\": -5.742000000000026,\n      \"test_return_pct\": 3.84,\n      \"test_max_drawdown_pct\": 0.0,\n      \"test_trades\": 3,\n      \"buy_hold_return_pct\": 2.5755000000000106\n    }\n  ],\n  \"summary\": {\n    \"windows\": 5,\n    \"compound_test_return_pct\": -5.824208526097719,\n    \"compound_buy_hold_return_pct\": 2.205439155040767,\n    \"windows_beating_buy_hold\": 3,\n    \"mean_test_return_pct\": -1.0979399999999988,\n    \"windows_without_trades\": 1,\n    \"test_blocks_contiguous\": true\n  },\n  \"overfit_warning\": \"Best in-sample parameters overfit; check them on data they were not chosen on.\",\n  \"disclaimer\": \"Research aid only. Not financial advice.\"\n}\n",
+   "stderr": "",
+   "files": {}
+  },
+  {
+   "argv": [
+    "sideways.csv",
+    "--short",
+    "2,3,5",
+    "--long",
+    "5,10,20",
+    "--train",
+    "40",
+    "--test",
+    "20",
+    "--step",
+    "10",
+    "--csv",
+    "out.csv",
+    "--warmup"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 10 windows; each SMA crossover pair was chosen on its train bars only, then traded and scored on the test bars after them, with its moving averages warmed up on up to long bars just before each test block\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-39       40-59    3/20    +6.36%    -5.52%    -1.33%      2\n     2       10-49       50-69    5/10    +5.57%    -2.28%    -5.79%      2\n     3       20-59       60-79    5/10    -4.59%    -5.77%    +1.86%      3\n     4       30-69       70-89    2/20    +0.00%    -2.26%    +1.99%      1\n     5       40-79       80-99    3/10    +0.74%    +0.80%    -1.45%      3\n     6       50-89      90-109    3/10    -0.75%    -1.30%    +4.05%      3\n     7       60-99     100-119     3/5    +0.35%   -10.19%    +0.60%      4\n     8      70-109     110-129    5/20    +1.16%    +2.80%    -0.86%      1\n     9      80-119     120-139    3/10    -5.74%    +8.67%    +2.58%      7\n    10      90-129     130-149    5/20    +2.80%    +0.00%    +2.06%      0\nTest return, compounded over the windows: -15.12%\nBuy & hold, compounded over the windows:  +3.39%\nMean test return per window: -1.50%\nWindows beating buy & hold: 4 of 10\nWindows without test trades: 1 of 10\nNote: the test blocks overlap or leave gaps (step is not equal to test), so the compounded figures do not describe one continuous stretch of prices.\nNote: 1 of 10 windows made no trades in the test block (no BUY crossover on a test bar before its last, or, near the start of the data, fewer than long bars before the block to warm up); their 0.00% says nothing about the pair.\nWrote 10 rows to out.csv\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {
+    "out.csv": "window,train_start,train_end,test_start,test_end,short,long,train_return_pct,test_return_pct,test_max_drawdown_pct,test_trades,buy_hold_return_pct\n1,0,40,40,60,3,20,6.3632,-5.5200,-6.3828,2,-1.3266\n2,10,50,50,70,5,10,5.5686,-2.2800,-3.4864,2,-5.7888\n3,20,60,60,80,5,10,-4.5865,-5.7668,-9.8197,3,1.8612\n4,30,70,70,90,2,20,0.0000,-2.2601,-6.5555,1,1.9897\n5,40,80,80,100,3,10,0.7424,0.8012,-3.3529,3,-1.4535\n6,50,90,90,110,3,10,-0.7456,-1.2994,-6.3287,3,4.0494\n7,60,100,100,120,3,5,0.3533,-10.1889,-10.3438,4,0.5959\n8,70,110,110,130,5,20,1.1568,2.8000,0.0000,1,-0.8640\n9,80,120,120,140,3,10,-5.7420,8.6730,-3.1975,7,2.5755\n10,90,130,130,150,5,20,2.8000,0.0000,0.0000,0,2.0600\n"
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--help"
+   ],
+   "code": 0,
+   "stdout": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\n\nWalk-forward test of the SMA crossover: pick the best window pair on each\ntrain block, then run it on the test block that follows.\n\npositional arguments:\n  csv_path       CSV file with a 'close' column\n\noptions:\n  -h, --help     show this help message and exit\n  --short LIST   short windows, e.g. 5,10,20\n  --long LIST    long windows, e.g. 20,50,100\n  --train N      bars in each train block\n  --test N       bars in each test block\n  --step N       bars each window moves on (default: --test)\n  --cash AMOUNT  starting cash (default: 10,000)\n  --fee AMOUNT   fixed cost per trade (default: 0)\n  --fee-pct PCT  percent of traded value per trade (default: 0)\n  --warmup       warm the moving averages up on the chosen pair's long bars\n                 before each test block (trades and scores still only inside\n                 the test block)\n  --json         print one JSON object with the windows and the summary\n                 instead of text\n  --csv OUT      also write one row per window to OUT as CSV\n\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {}
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--long",
+    "3",
+    "--train",
+    "7",
+    "--test",
+    "4"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: the following arguments are required: --short\n",
+   "files": {}
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--long",
+    "3",
+    "--test",
+    "4"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: the following arguments are required: --short, --train\n",
+   "files": {}
+  },
+  {
+   "argv": [
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "7",
+    "--test",
+    "4"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: the following arguments are required: csv_path\n",
+   "files": {}
+  },
+  {
+   "argv": [],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: the following arguments are required: csv_path, --short, --long, --train, --test\n",
+   "files": {}
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "9",
+    "--long",
+    "5",
+    "--train",
+    "7",
+    "--test",
+    "4"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: no (short, long) pair with short < long; make some --short value smaller than a --long value\n",
+   "files": {}
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1,2",
+    "--long",
+    "3,4",
+    "--train",
+    "7",
+    "--test",
+    "4",
+    "--cash",
+    "1000",
+    "--test",
+    "0"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: --test must be at least 1\n",
+   "files": {}
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1,2",
+    "--long",
+    "3,4",
+    "--train",
+    "7",
+    "--test",
+    "4",
+    "--cash",
+    "1000",
+    "--warmup",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: 5\n",
+   "files": {}
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1,2",
+    "--long",
+    "3,4",
+    "--train",
+    "7",
+    "--test",
+    "4",
+    "--cash",
+    "1000",
+    "--csv",
+    ""
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: --csv needs a file name\n",
+   "files": {}
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1,2",
+    "--long",
+    "3,4",
+    "--train",
+    "7",
+    "--test",
+    "4",
+    "--cash",
+    "1000",
+    "--cash",
+    "0"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: --cash must be positive, got 0\n",
+   "files": {}
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1,2",
+    "--long",
+    "3,4",
+    "--train",
+    "7",
+    "--test",
+    "4",
+    "--cash",
+    "1000",
+    "x"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: x\n",
+   "files": {}
+  },
+  {
+   "argv": [
+    "missing.csv",
+    "--short",
+    "1,2",
+    "--long",
+    "3,4",
+    "--train",
+    "7",
+    "--test",
+    "4",
+    "--cash",
+    "1000"
+   ],
+   "code": 1,
+   "stdout": "",
+   "stderr": "Error: [Errno 2] No such file or directory: 'missing.csv'\n",
+   "files": {}
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "17",
+    "--test",
+    "4"
+   ],
+   "code": 1,
+   "stdout": "",
+   "stderr": "Error: not enough prices for a walk-forward window: 18 bars, need at least train + test = 21\n",
+   "files": {}
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1,2",
+    "--long",
+    "3,4",
+    "--train",
+    "7",
+    "--test",
+    "4",
+    "--cash",
+    "1000",
+    "--csv",
+    "wf.csv"
+   ],
+   "code": 1,
+   "stdout": "",
+   "stderr": "Error: --csv refuses to overwrite the input file wf.csv\n",
+   "files": {}
+  }
+ ],
+ "abbreviations": [
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: -- 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: ambiguous option: --=5 could match --help, --short, --long, --train, --test, --step, --cash, --fee, --fee-pct, --warmup, --json, --csv\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--c",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: ambiguous option: --c could match --cash, --csv\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--c=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: ambiguous option: --c=5 could match --cash, --csv\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--ca",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    +0.00%    +0.00%    +0.00%      0\n     2        3-14       15-17     1/3    +0.00%    +0.00%    +0.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +0.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 5.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--ca=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    +0.00%    +0.00%    +0.00%      0\n     2        3-14       15-17     1/3    +0.00%    +0.00%    +0.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +0.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 5.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--cas",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    +0.00%    +0.00%    +0.00%      0\n     2        3-14       15-17     1/3    +0.00%    +0.00%    +0.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +0.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 5.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--cas=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    +0.00%    +0.00%    +0.00%      0\n     2        3-14       15-17     1/3    +0.00%    +0.00%    +0.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +0.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 5.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--cash",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    +0.00%    +0.00%    +0.00%      0\n     2        3-14       15-17     1/3    +0.00%    +0.00%    +0.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +0.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 5.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--cash=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    +0.00%    +0.00%    +0.00%      0\n     2        3-14       15-17     1/3    +0.00%    +0.00%    +0.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +0.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 5.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--cs",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    +0.00%    +0.00%   +30.00%      0\n     2        3-14       15-17     1/3    +0.00%    +0.00%    +0.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +30.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nWrote 2 rows to 5\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {
+    "5": "window,train_start,train_end,test_start,test_end,short,long,train_return_pct,test_return_pct,test_max_drawdown_pct,test_trades,buy_hold_return_pct\n1,0,12,12,15,1,3,0.0000,0.0000,0.0000,0,30.0000\n2,3,15,15,18,1,3,0.0000,0.0000,0.0000,0,0.0000\n"
+   },
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": "5"
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--cs=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    +0.00%    +0.00%   +30.00%      0\n     2        3-14       15-17     1/3    +0.00%    +0.00%    +0.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +30.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nWrote 2 rows to 5\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {
+    "5": "window,train_start,train_end,test_start,test_end,short,long,train_return_pct,test_return_pct,test_max_drawdown_pct,test_trades,buy_hold_return_pct\n1,0,12,12,15,1,3,0.0000,0.0000,0.0000,0,30.0000\n2,3,15,15,18,1,3,0.0000,0.0000,0.0000,0,0.0000\n"
+   },
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": "5"
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--csv",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    +0.00%    +0.00%   +30.00%      0\n     2        3-14       15-17     1/3    +0.00%    +0.00%    +0.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +30.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nWrote 2 rows to 5\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {
+    "5": "window,train_start,train_end,test_start,test_end,short,long,train_return_pct,test_return_pct,test_max_drawdown_pct,test_trades,buy_hold_return_pct\n1,0,12,12,15,1,3,0.0000,0.0000,0.0000,0,30.0000\n2,3,15,15,18,1,3,0.0000,0.0000,0.0000,0,0.0000\n"
+   },
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": "5"
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--csv=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    +0.00%    +0.00%   +30.00%      0\n     2        3-14       15-17     1/3    +0.00%    +0.00%    +0.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +30.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nWrote 2 rows to 5\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {
+    "5": "window,train_start,train_end,test_start,test_end,short,long,train_return_pct,test_return_pct,test_max_drawdown_pct,test_trades,buy_hold_return_pct\n1,0,12,12,15,1,3,0.0000,0.0000,0.0000,0,30.0000\n2,3,15,15,18,1,3,0.0000,0.0000,0.0000,0,0.0000\n"
+   },
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": "5"
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--f",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: ambiguous option: --f could match --fee, --fee-pct\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--f=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: ambiguous option: --f=5 could match --fee, --fee-pct\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--fe",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: ambiguous option: --fe could match --fee, --fee-pct\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--fe=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: ambiguous option: --fe=5 could match --fee, --fee-pct\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--fee",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    -1.00%    +0.00%   +29.20%      0\n     2        3-14       15-17     1/3    -1.50%    +0.00%    -0.50%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +28.55%\nMean test return per window: +0.00%\nWindows beating buy & hold: 1 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": 5.0,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--fee=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    -1.00%    +0.00%   +29.20%      0\n     2        3-14       15-17     1/3    -1.50%    +0.00%    -0.50%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +28.55%\nMean test return per window: +0.00%\nWindows beating buy & hold: 1 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": 5.0,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--fee-",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    -9.46%    +0.00%   +23.75%      0\n     2        3-14       15-17     1/3   -13.75%    +0.00%    -4.76%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +17.86%\nMean test return per window: +0.00%\nWindows beating buy & hold: 1 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": 5.0,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--fee-=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    -9.46%    +0.00%   +23.75%      0\n     2        3-14       15-17     1/3   -13.75%    +0.00%    -4.76%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +17.86%\nMean test return per window: +0.00%\nWindows beating buy & hold: 1 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": 5.0,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--fee-p",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    -9.46%    +0.00%   +23.75%      0\n     2        3-14       15-17     1/3   -13.75%    +0.00%    -4.76%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +17.86%\nMean test return per window: +0.00%\nWindows beating buy & hold: 1 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": 5.0,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--fee-p=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    -9.46%    +0.00%   +23.75%      0\n     2        3-14       15-17     1/3   -13.75%    +0.00%    -4.76%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +17.86%\nMean test return per window: +0.00%\nWindows beating buy & hold: 1 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": 5.0,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--fee-pc",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    -9.46%    +0.00%   +23.75%      0\n     2        3-14       15-17     1/3   -13.75%    +0.00%    -4.76%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +17.86%\nMean test return per window: +0.00%\nWindows beating buy & hold: 1 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": 5.0,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--fee-pc=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    -9.46%    +0.00%   +23.75%      0\n     2        3-14       15-17     1/3   -13.75%    +0.00%    -4.76%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +17.86%\nMean test return per window: +0.00%\nWindows beating buy & hold: 1 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": 5.0,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--fee-pct",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    -9.46%    +0.00%   +23.75%      0\n     2        3-14       15-17     1/3   -13.75%    +0.00%    -4.76%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +17.86%\nMean test return per window: +0.00%\nWindows beating buy & hold: 1 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": 5.0,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--fee-pct=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    -9.46%    +0.00%   +23.75%      0\n     2        3-14       15-17     1/3   -13.75%    +0.00%    -4.76%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +17.86%\nMean test return per window: +0.00%\nWindows beating buy & hold: 1 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": 5.0,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--g",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --g 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--g=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --g=5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--gr",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --gr 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--gr=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --gr=5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--gri",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --gri 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--gri=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --gri=5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--grid",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --grid 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--grid=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --grid=5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--h",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\n\nWalk-forward test of the SMA crossover: pick the best window pair on each\ntrain block, then run it on the test block that follows.\n\npositional arguments:\n  csv_path       CSV file with a 'close' column\n\noptions:\n  -h, --help     show this help message and exit\n  --short LIST   short windows, e.g. 5,10,20\n  --long LIST    long windows, e.g. 20,50,100\n  --train N      bars in each train block\n  --test N       bars in each test block\n  --step N       bars each window moves on (default: --test)\n  --cash AMOUNT  starting cash (default: 10,000)\n  --fee AMOUNT   fixed cost per trade (default: 0)\n  --fee-pct PCT  percent of traded value per trade (default: 0)\n  --warmup       warm the moving averages up on the chosen pair's long bars\n                 before each test block (trades and scores still only inside\n                 the test block)\n  --json         print one JSON object with the windows and the summary\n                 instead of text\n  --csv OUT      also write one row per window to OUT as CSV\n\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--h=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: argument -h/--help: ignored explicit argument '5'\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--he",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\n\nWalk-forward test of the SMA crossover: pick the best window pair on each\ntrain block, then run it on the test block that follows.\n\npositional arguments:\n  csv_path       CSV file with a 'close' column\n\noptions:\n  -h, --help     show this help message and exit\n  --short LIST   short windows, e.g. 5,10,20\n  --long LIST    long windows, e.g. 20,50,100\n  --train N      bars in each train block\n  --test N       bars in each test block\n  --step N       bars each window moves on (default: --test)\n  --cash AMOUNT  starting cash (default: 10,000)\n  --fee AMOUNT   fixed cost per trade (default: 0)\n  --fee-pct PCT  percent of traded value per trade (default: 0)\n  --warmup       warm the moving averages up on the chosen pair's long bars\n                 before each test block (trades and scores still only inside\n                 the test block)\n  --json         print one JSON object with the windows and the summary\n                 instead of text\n  --csv OUT      also write one row per window to OUT as CSV\n\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--he=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: argument -h/--help: ignored explicit argument '5'\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--hel",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\n\nWalk-forward test of the SMA crossover: pick the best window pair on each\ntrain block, then run it on the test block that follows.\n\npositional arguments:\n  csv_path       CSV file with a 'close' column\n\noptions:\n  -h, --help     show this help message and exit\n  --short LIST   short windows, e.g. 5,10,20\n  --long LIST    long windows, e.g. 20,50,100\n  --train N      bars in each train block\n  --test N       bars in each test block\n  --step N       bars each window moves on (default: --test)\n  --cash AMOUNT  starting cash (default: 10,000)\n  --fee AMOUNT   fixed cost per trade (default: 0)\n  --fee-pct PCT  percent of traded value per trade (default: 0)\n  --warmup       warm the moving averages up on the chosen pair's long bars\n                 before each test block (trades and scores still only inside\n                 the test block)\n  --json         print one JSON object with the windows and the summary\n                 instead of text\n  --csv OUT      also write one row per window to OUT as CSV\n\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--hel=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: argument -h/--help: ignored explicit argument '5'\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--help",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\n\nWalk-forward test of the SMA crossover: pick the best window pair on each\ntrain block, then run it on the test block that follows.\n\npositional arguments:\n  csv_path       CSV file with a 'close' column\n\noptions:\n  -h, --help     show this help message and exit\n  --short LIST   short windows, e.g. 5,10,20\n  --long LIST    long windows, e.g. 20,50,100\n  --train N      bars in each train block\n  --test N       bars in each test block\n  --step N       bars each window moves on (default: --test)\n  --cash AMOUNT  starting cash (default: 10,000)\n  --fee AMOUNT   fixed cost per trade (default: 0)\n  --fee-pct PCT  percent of traded value per trade (default: 0)\n  --warmup       warm the moving averages up on the chosen pair's long bars\n                 before each test block (trades and scores still only inside\n                 the test block)\n  --json         print one JSON object with the windows and the summary\n                 instead of text\n  --csv OUT      also write one row per window to OUT as CSV\n\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--help=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: argument -h/--help: ignored explicit argument '5'\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--j",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--j=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: argument --json: ignored explicit argument '5'\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--js",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--js=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: argument --json: ignored explicit argument '5'\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--jso",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--jso=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: argument --json: ignored explicit argument '5'\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--json",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--json=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: argument --json: ignored explicit argument '5'\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--l",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/5    -8.30%    +0.00%   +30.00%      0\n     2        3-14       15-17     1/5    +0.00%    +0.00%    +0.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +30.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     5
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--l=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/5    -8.30%    +0.00%   +30.00%      0\n     2        3-14       15-17     1/5    +0.00%    +0.00%    +0.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +30.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     5
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--lo",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/5    -8.30%    +0.00%   +30.00%      0\n     2        3-14       15-17     1/5    +0.00%    +0.00%    +0.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +30.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     5
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--lo=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/5    -8.30%    +0.00%   +30.00%      0\n     2        3-14       15-17     1/5    +0.00%    +0.00%    +0.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +30.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     5
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--lon",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/5    -8.30%    +0.00%   +30.00%      0\n     2        3-14       15-17     1/5    +0.00%    +0.00%    +0.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +30.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     5
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--lon=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/5    -8.30%    +0.00%   +30.00%      0\n     2        3-14       15-17     1/5    +0.00%    +0.00%    +0.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +30.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     5
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--long",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/5    -8.30%    +0.00%   +30.00%      0\n     2        3-14       15-17     1/5    +0.00%    +0.00%    +0.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +30.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     5
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--long=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 2 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/5    -8.30%    +0.00%   +30.00%      0\n     2        3-14       15-17     1/5    +0.00%    +0.00%    +0.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +30.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 2\nWindows without test trades: 2 of 2\nNote: 2 of 2 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     5
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--p",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --p 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--p=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --p=5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--pa",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --pa 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--pa=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --pa=5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--par",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --par 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--par=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --par=5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--para",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --para 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--para=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --para=5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--param",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --param 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--param=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --param=5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--s",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: ambiguous option: --s could match --short, --step\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--s=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: ambiguous option: --s=5 could match --short, --step\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--sh",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: no (short, long) pair with short < long; make some --short value smaller than a --long value\n",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     5
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--sh=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: no (short, long) pair with short < long; make some --short value smaller than a --long value\n",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     5
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--sho",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: no (short, long) pair with short < long; make some --short value smaller than a --long value\n",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     5
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--sho=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: no (short, long) pair with short < long; make some --short value smaller than a --long value\n",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     5
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--shor",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: no (short, long) pair with short < long; make some --short value smaller than a --long value\n",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     5
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--shor=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: no (short, long) pair with short < long; make some --short value smaller than a --long value\n",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     5
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--short",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: no (short, long) pair with short < long; make some --short value smaller than a --long value\n",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     5
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--short=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: no (short, long) pair with short < long; make some --short value smaller than a --long value\n",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     5
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--st",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 1 window; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    +0.00%    +0.00%   +30.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +30.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 1\nWindows without test trades: 1 of 1\nNote: 1 of 1 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": 5,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--st=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 1 window; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    +0.00%    +0.00%   +30.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +30.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 1\nWindows without test trades: 1 of 1\nNote: 1 of 1 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": 5,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--ste",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 1 window; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    +0.00%    +0.00%   +30.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +30.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 1\nWindows without test trades: 1 of 1\nNote: 1 of 1 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": 5,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--ste=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 1 window; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    +0.00%    +0.00%   +30.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +30.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 1\nWindows without test trades: 1 of 1\nNote: 1 of 1 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": 5,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--step",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 1 window; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    +0.00%    +0.00%   +30.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +30.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 1\nWindows without test trades: 1 of 1\nNote: 1 of 1 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": 5,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--step=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 1 window; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-14     1/3    +0.00%    +0.00%   +30.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +30.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 1\nWindows without test trades: 1 of 1\nNote: 1 of 1 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 3,
+    "step": 5,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--str",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --str 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--str=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --str=5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--stra",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --stra 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--stra=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --stra=5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--strat",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --strat 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--strat=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --strat=5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--strate",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --strate 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--strate=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --strate=5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--strateg",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --strateg 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--strateg=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --strateg=5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--strategy",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --strategy 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--strategy=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: --strategy=5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--t",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: ambiguous option: --t could match --train, --test\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--t=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: ambiguous option: --t=5 could match --train, --test\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--te",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 1 window; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-16     1/3    +0.00%    +0.00%   +50.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +50.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 1\nWindows without test trades: 1 of 1\nNote: 1 of 1 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 5,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--te=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 1 window; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-16     1/3    +0.00%    +0.00%   +50.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +50.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 1\nWindows without test trades: 1 of 1\nNote: 1 of 1 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 5,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--tes",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 1 window; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-16     1/3    +0.00%    +0.00%   +50.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +50.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 1\nWindows without test trades: 1 of 1\nNote: 1 of 1 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 5,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--tes=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 1 window; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-16     1/3    +0.00%    +0.00%   +50.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +50.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 1\nWindows without test trades: 1 of 1\nNote: 1 of 1 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 5,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--test",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 1 window; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-16     1/3    +0.00%    +0.00%   +50.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +50.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 1\nWindows without test trades: 1 of 1\nNote: 1 of 1 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 5,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--test=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 1 window; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1        0-11       12-16     1/3    +0.00%    +0.00%   +50.00%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +50.00%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 1\nWindows without test trades: 1 of 1\nNote: 1 of 1 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 12,
+    "test": 5,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--tr",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 4 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1         0-4         5-7     1/3    +0.00%    +0.00%   +22.20%      0\n     2         3-7        8-10     1/3    +0.00%    +0.00%    +0.00%      0\n     3        6-10       11-13     1/3    +0.00%    +0.00%    +0.00%      0\n     4        9-13       14-16     1/3    +0.00%    +0.00%   +15.20%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +40.77%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 4\nWindows without test trades: 4 of 4\nNote: 4 of 4 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 5,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--tr=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 4 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1         0-4         5-7     1/3    +0.00%    +0.00%   +22.20%      0\n     2         3-7        8-10     1/3    +0.00%    +0.00%    +0.00%      0\n     3        6-10       11-13     1/3    +0.00%    +0.00%    +0.00%      0\n     4        9-13       14-16     1/3    +0.00%    +0.00%   +15.20%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +40.77%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 4\nWindows without test trades: 4 of 4\nNote: 4 of 4 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 5,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--tra",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 4 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1         0-4         5-7     1/3    +0.00%    +0.00%   +22.20%      0\n     2         3-7        8-10     1/3    +0.00%    +0.00%    +0.00%      0\n     3        6-10       11-13     1/3    +0.00%    +0.00%    +0.00%      0\n     4        9-13       14-16     1/3    +0.00%    +0.00%   +15.20%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +40.77%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 4\nWindows without test trades: 4 of 4\nNote: 4 of 4 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 5,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--tra=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 4 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1         0-4         5-7     1/3    +0.00%    +0.00%   +22.20%      0\n     2         3-7        8-10     1/3    +0.00%    +0.00%    +0.00%      0\n     3        6-10       11-13     1/3    +0.00%    +0.00%    +0.00%      0\n     4        9-13       14-16     1/3    +0.00%    +0.00%   +15.20%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +40.77%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 4\nWindows without test trades: 4 of 4\nNote: 4 of 4 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 5,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--trai",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 4 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1         0-4         5-7     1/3    +0.00%    +0.00%   +22.20%      0\n     2         3-7        8-10     1/3    +0.00%    +0.00%    +0.00%      0\n     3        6-10       11-13     1/3    +0.00%    +0.00%    +0.00%      0\n     4        9-13       14-16     1/3    +0.00%    +0.00%   +15.20%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +40.77%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 4\nWindows without test trades: 4 of 4\nNote: 4 of 4 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 5,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--trai=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 4 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1         0-4         5-7     1/3    +0.00%    +0.00%   +22.20%      0\n     2         3-7        8-10     1/3    +0.00%    +0.00%    +0.00%      0\n     3        6-10       11-13     1/3    +0.00%    +0.00%    +0.00%      0\n     4        9-13       14-16     1/3    +0.00%    +0.00%   +15.20%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +40.77%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 4\nWindows without test trades: 4 of 4\nNote: 4 of 4 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 5,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--train",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 4 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1         0-4         5-7     1/3    +0.00%    +0.00%   +22.20%      0\n     2         3-7        8-10     1/3    +0.00%    +0.00%    +0.00%      0\n     3        6-10       11-13     1/3    +0.00%    +0.00%    +0.00%      0\n     4        9-13       14-16     1/3    +0.00%    +0.00%   +15.20%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +40.77%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 4\nWindows without test trades: 4 of 4\nNote: 4 of 4 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 5,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--train=5"
+   ],
+   "code": 0,
+   "stdout": "Walk-forward: 4 windows; each SMA crossover pair was chosen on its train bars only, then run on the test bars after them\nWindow  Train bars   Test bars    Pair     Train      Test  Buy&Hold Trades\n     1         0-4         5-7     1/3    +0.00%    +0.00%   +22.20%      0\n     2         3-7        8-10     1/3    +0.00%    +0.00%    +0.00%      0\n     3        6-10       11-13     1/3    +0.00%    +0.00%    +0.00%      0\n     4        9-13       14-16     1/3    +0.00%    +0.00%   +15.20%      0\nTest return, compounded over the windows: +0.00%\nBuy & hold, compounded over the windows:  +40.77%\nMean test return per window: +0.00%\nWindows beating buy & hold: 0 of 4\nWindows without test trades: 4 of 4\nNote: 4 of 4 windows made no trades in the test block (no crossover, or fewer than long + 2 test bars to warm up); their 0.00% says nothing about the pair.\nBest in-sample parameters overfit; check them on data they were not chosen on.\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": {
+    "csv_path": "wf.csv",
+    "short": [
+     1
+    ],
+    "long": [
+     3
+    ],
+    "train": 5,
+    "test": 3,
+    "step": null,
+    "cash": 1000.0,
+    "fee": null,
+    "fee_pct": null,
+    "warmup": false,
+    "json": false,
+    "csv": null
+   }
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--w",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--w=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: argument --warmup: ignored explicit argument '5'\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--wa",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--wa=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: argument --warmup: ignored explicit argument '5'\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--war",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--war=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: argument --warmup: ignored explicit argument '5'\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--warm",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--warm=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: argument --warmup: ignored explicit argument '5'\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--warmu",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--warmu=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: argument --warmup: ignored explicit argument '5'\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--warmup",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "--warmup=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: argument --warmup: ignored explicit argument '5'\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "-g",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: -g 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "-g=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: -g=5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "-h",
+    "5"
+   ],
+   "code": 0,
+   "stdout": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\n\nWalk-forward test of the SMA crossover: pick the best window pair on each\ntrain block, then run it on the test block that follows.\n\npositional arguments:\n  csv_path       CSV file with a 'close' column\n\noptions:\n  -h, --help     show this help message and exit\n  --short LIST   short windows, e.g. 5,10,20\n  --long LIST    long windows, e.g. 20,50,100\n  --train N      bars in each train block\n  --test N       bars in each test block\n  --step N       bars each window moves on (default: --test)\n  --cash AMOUNT  starting cash (default: 10,000)\n  --fee AMOUNT   fixed cost per trade (default: 0)\n  --fee-pct PCT  percent of traded value per trade (default: 0)\n  --warmup       warm the moving averages up on the chosen pair's long bars\n                 before each test block (trades and scores still only inside\n                 the test block)\n  --json         print one JSON object with the windows and the summary\n                 instead of text\n  --csv OUT      also write one row per window to OUT as CSV\n\nResearch aid only. Not financial advice.\n",
+   "stderr": "",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "-h=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: argument -h/--help: ignored explicit argument '5'\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "-p",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: -p 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "-p=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: -p=5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "-s",
+    "5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: -s 5\n",
+   "files": {},
+   "namespace": null
+  },
+  {
+   "argv": [
+    "wf.csv",
+    "--short",
+    "1",
+    "--long",
+    "3",
+    "--train",
+    "12",
+    "--test",
+    "3",
+    "--cash",
+    "1000",
+    "-s=5"
+   ],
+   "code": 2,
+   "stdout": "",
+   "stderr": "usage: trading_assistant.walkforward [-h] --short LIST --long LIST --train N\n                                     --test N [--step N] [--cash AMOUNT]\n                                     [--fee AMOUNT] [--fee-pct PCT] [--warmup]\n                                     [--json] [--csv OUT]\n                                     csv_path\ntrading_assistant.walkforward: error: unrecognized arguments: -s=5\n",
+   "files": {},
+   "namespace": null
+  }
+ ]
+}

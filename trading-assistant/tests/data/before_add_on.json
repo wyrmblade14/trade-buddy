@@ -1,0 +1,188 @@
+{
+ "cases": {
+  "c/atr": {
+   "final_equity": 994.2,
+   "n_fills": 3,
+   "sha256": "b067f7df4fb886f3a19465158a54a7bf835e398d11f639494cb12c0172b2ae37"
+  },
+  "c/be_so": {
+   "final_equity": 1018.9938999999999,
+   "n_fills": 4,
+   "sha256": "8166cf3f265ee14a9435997550fe2cbc4f264b94e8ba076720784eccba3355c6"
+  },
+  "c/breakout_so": {
+   "final_equity": 950.1999999999999,
+   "n_fills": 3,
+   "sha256": "1d46e21d090374df9a581e223e286fcca73efbecb7d83d456f60537ab3614b49"
+  },
+  "c/open": {
+   "final_equity": 1015.5999999999999,
+   "n_fills": 3,
+   "sha256": "fdef4888dc36d87d1c981db4723298859f2aac48cf51498cacd0f488c357cae3"
+  },
+  "c/open_all": {
+   "final_equity": 1065.922639376,
+   "n_fills": 5,
+   "sha256": "31aa04debb3e16a5bdfe17174830f33212c2e683a4f7eb08eb5a3bcbcdd71ea7"
+  },
+  "c/stops": {
+   "final_equity": 1048.1999999999998,
+   "n_fills": 3,
+   "sha256": "a2c756b4bf91e91c70dd2da55ea6fcadeadea8f96b84aa1b7b1abc0d0fea4efb"
+  },
+  "c_closes/breakout": {
+   "final_equity": 1088.0,
+   "n_fills": 3,
+   "sha256": "1f5623959e97e85b654b487945d6e1269564a8de04d75d8fcbff941f95b7f5dc"
+  },
+  "c_closes/fees_slip": {
+   "final_equity": 947.140788,
+   "n_fills": 3,
+   "sha256": "7eb814c34482937cfa41e6c333e74e1e91d8bdd2c5d2edadbfc0cb3f84ba899e"
+  },
+  "c_closes/halts": {
+   "final_equity": 906.0,
+   "n_fills": 2,
+   "sha256": "fdda8bbd172adeddad59c1c1c8371c0925d9c5d4b0522d3d2502209f749b7ccc"
+  },
+  "c_closes/holds": {
+   "final_equity": 962.8,
+   "n_fills": 3,
+   "sha256": "b28353219b87caed6d00244879fea48c0d590920361e450d78c14f2a8d4bc397"
+  },
+  "c_closes/plain": {
+   "final_equity": 925.0,
+   "n_fills": 3,
+   "sha256": "9d67caa96b791adbef75a921813c1b033abc3f217672b7dc1ccaa73f6516dde0"
+  },
+  "c_closes/ps": {
+   "final_equity": 962.8,
+   "n_fills": 3,
+   "sha256": "c9361338690aa730268b0f077e763ad95c61104dc9ede9b4da8ba8945f83f50a"
+  },
+  "c_closes/rsi": {
+   "final_equity": 1000.0,
+   "n_fills": 0,
+   "sha256": "8f3abd6b5044d11d170ff62ae465f1322fc1f583da8d9d001e52cde3c413fc24"
+  },
+  "c_closes/warmup": {
+   "final_equity": 947.8,
+   "n_fills": 3,
+   "sha256": "0d57e6e22550070a967de5838eb8caa2f7c062625f29afac86d430056447e9ba"
+  },
+  "u/breakout": {
+   "final_equity": 941.0,
+   "n_fills": 4,
+   "sha256": "359808775f9e5ce73e77bc82b04d8d710488e5ef5df8c0f6eb7cfbd61beffd20"
+  },
+  "u/fees_slip": {
+   "final_equity": 1102.112216,
+   "n_fills": 2,
+   "sha256": "8b5f9e154ab944b35e7aca6326ac8e3610f401e54a012bd3580a2822d3afe57b"
+  },
+  "u/halts": {
+   "final_equity": 1176.0,
+   "n_fills": 2,
+   "sha256": "cf44fbdfcd7e4ceda3e2593bdc14ece85d98d0cda89e0b4d92ab9e99207d54a1"
+  },
+  "u/holds": {
+   "final_equity": 1135.0,
+   "n_fills": 2,
+   "sha256": "16f3e0d3dd2f6d56446e12c34f7fffe817d2169d3739d1d994c2104e52b4963b"
+  },
+  "u/plain": {
+   "final_equity": 1180.0,
+   "n_fills": 2,
+   "sha256": "80ff893d1f1a5d8a7baad905606d9d644984801261bd2051824a4c110b38b1fa"
+  },
+  "u/ps": {
+   "final_equity": 1090.0,
+   "n_fills": 2,
+   "sha256": "297892f1434ad2bef086a6b3105c860d1bd0c3eab2dfc7f82e3c8fc92bd5f7e6"
+  },
+  "u/rsi": {
+   "final_equity": 1000.0,
+   "n_fills": 0,
+   "sha256": "18a1a7ca1b819661f6ad915d903f413751f9e11a4ea68b1884e199d493e4e65f"
+  },
+  "u/warmup": {
+   "final_equity": 1126.0,
+   "n_fills": 2,
+   "sha256": "2723ea60ff2e2a5b501964d5a31966803c31c5a85a4ceb75fc4a4db446e999de"
+  },
+  "w/atr": {
+   "final_equity": 10530.494088963445,
+   "n_fills": 27,
+   "sha256": "121414515eefa7cc299eb984158cd635ae9506dd978af13e1fd84fc1485ee64b"
+  },
+  "w/be_so": {
+   "final_equity": 9785.093005499997,
+   "n_fills": 32,
+   "sha256": "9effcdf1d427de54bbf611aae47bc6866a2270c349bbcad643b7ed47b52300fc"
+  },
+  "w/breakout": {
+   "final_equity": 13408.189999999988,
+   "n_fills": 205,
+   "sha256": "07bb3d1c0ac0305c9d8e29c1fb3c3ccf6568265e793b35ef12c03dc3e08e70ac"
+  },
+  "w/breakout_so": {
+   "final_equity": 14597.346399999984,
+   "n_fills": 176,
+   "sha256": "394825680ac467b0743346d8f770967c3b2e4bfa574b4f2db5d073fa7bde0ab8"
+  },
+  "w/fees_slip": {
+   "final_equity": 9688.457812319997,
+   "n_fills": 27,
+   "sha256": "b89f5422ffea2acdb31e9262bf0de48690cbcd55355b9534269c9f5626d583ee"
+  },
+  "w/halts": {
+   "final_equity": 9888.960000000001,
+   "n_fills": 4,
+   "sha256": "1701017d8e462f2f74a3851896c03c61af65ba25bf9ec9c74691428748dbb1a5"
+  },
+  "w/holds": {
+   "final_equity": 9750.730000000001,
+   "n_fills": 26,
+   "sha256": "09e8e11aaeecceba2cb7032efd04fe361e43ab3d5afc04c82115d1ddce8088b5"
+  },
+  "w/open": {
+   "final_equity": 9886.589999999997,
+   "n_fills": 27,
+   "sha256": "2857d1c323657d673e5ece1f2936078155ab1428eb74e274061b4b71f111f8b0"
+  },
+  "w/open_all": {
+   "final_equity": 8972.870924751998,
+   "n_fills": 14,
+   "sha256": "155f275035ddc962bf9baccf90e26fc28315729018141a87805e867648b11e79"
+  },
+  "w/plain": {
+   "final_equity": 10160.2,
+   "n_fills": 27,
+   "sha256": "db224585333228918e33c42884f12178717f660c6ac6aac0b488f74fc1d59204"
+  },
+  "w/ps": {
+   "final_equity": 10182.340000000002,
+   "n_fills": 27,
+   "sha256": "aa596459261f880d79839dec1f31fd997d8e18b95ff7259bdd3caf6890215fcd"
+  },
+  "w/rsi": {
+   "final_equity": 7236.7900000000045,
+   "n_fills": 90,
+   "sha256": "fa18eb3d86776d5978135f9c5defcc213a0c1db77797c0f34ddc5ce2afc1a04f"
+  },
+  "w/stops": {
+   "final_equity": 10436.9887,
+   "n_fills": 27,
+   "sha256": "2cde01042690b66bd88b0d2b583b6e52a4d87f2eef7115f533a15a886223b222"
+  },
+  "w/warmup": {
+   "final_equity": 10201.579999999994,
+   "n_fills": 27,
+   "sha256": "5758a516c9ed2696681f92d0e87ac96b730c771362c8de09f52ab331063af4c6"
+  }
+ },
+ "inputs_sha256": {
+  "w": "7855576890787eb033f0e114bf1c271adfac7f9dfb860b3270975fe2413105b4"
+ },
+ "note": "Recorded from the engine before add-ons existed (0.19.0, git 9b8449f); see tests/test_add_on.py."
+}

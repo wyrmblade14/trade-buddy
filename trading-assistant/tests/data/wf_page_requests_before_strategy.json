@@ -1,0 +1,56 @@
+{
+ "note": "Request bodies (as sent, byte for byte) of the walk-forward panel before its strategy picker, recorded from git HEAD 924f482: the page script run in Node with the stand-in DOM of test_web_walkforward_page.py, one run per case (fields set, wf-warmup ticked where listed).",
+ "cases": [
+  {},
+  {
+   "wf-source": "sideways",
+   "wf-short": "2,3,5",
+   "wf-long": "5,10,20",
+   "wf-train": "40",
+   "wf-test": "20"
+  },
+  {
+   "wf-source": "sideways",
+   "wf-short": " 3, 2 ",
+   "wf-long": "20,5",
+   "wf-train": " 40",
+   "wf-test": "20 ",
+   "wf-step": "10",
+   "wf-cash": "5000",
+   "wf-fee": "1",
+   "wf-fee-pct": "0.1"
+  },
+  {
+   "wf-short": "",
+   "wf-long": "",
+   "wf-train": "",
+   "wf-test": "",
+   "wf-step": "",
+   "wf-cash": "",
+   "wf-fee": "",
+   "wf-fee-pct": ""
+  },
+  {
+   "wf-source": "csv",
+   "wf-csv": "date,close\n2026-02-01,10\n2026-02-02,11\n2026-02-03,12\n2026-02-04,11\n2026-02-05,10\n2026-02-06,9\n2026-02-07,10\n2026-02-08,11\n2026-02-09,12\n2026-02-10,13\n2026-02-11,12\n2026-02-12,11\n2026-02-13,10\n2026-02-14,11\n2026-02-15,13\n2026-02-16,14\n2026-02-17,15\n2026-02-18,14\n",
+   "wf-short": "1",
+   "wf-long": "3",
+   "wf-train": "12",
+   "wf-test": "6",
+   "wf-cash": "1000",
+   "wf-warmup": true
+  },
+  {
+   "wf-source": "random_walk",
+   "wf-warmup": true
+  }
+ ],
+ "requests": [
+  "{\"source\":\"sample\",\"sample\":\"\",\"short\":\"5,10,20\",\"long\":\"20,50,100\",\"train\":\"250\",\"test\":\"60\",\"step\":\"\",\"cash\":\"10000\",\"fee\":\"0\",\"fee_pct\":\"0\"}",
+  "{\"source\":\"sample\",\"sample\":\"sideways\",\"short\":\"2,3,5\",\"long\":\"5,10,20\",\"train\":\"40\",\"test\":\"20\",\"step\":\"\",\"cash\":\"10000\",\"fee\":\"0\",\"fee_pct\":\"0\"}",
+  "{\"source\":\"sample\",\"sample\":\"sideways\",\"short\":\"3, 2\",\"long\":\"20,5\",\"train\":\"40\",\"test\":\"20\",\"step\":\"10\",\"cash\":\"5000\",\"fee\":\"1\",\"fee_pct\":\"0.1\"}",
+  "{\"source\":\"sample\",\"sample\":\"sideways\",\"short\":\"\",\"long\":\"\",\"train\":\"\",\"test\":\"\",\"step\":\"\",\"cash\":\"\",\"fee\":\"\",\"fee_pct\":\"\"}",
+  "{\"source\":\"csv\",\"short\":\"1\",\"long\":\"3\",\"train\":\"12\",\"test\":\"6\",\"step\":\"\",\"cash\":\"1000\",\"fee\":\"\",\"fee_pct\":\"\",\"csv\":\"date,close\\n2026-02-01,10\\n2026-02-02,11\\n2026-02-03,12\\n2026-02-04,11\\n2026-02-05,10\\n2026-02-06,9\\n2026-02-07,10\\n2026-02-08,11\\n2026-02-09,12\\n2026-02-10,13\\n2026-02-11,12\\n2026-02-12,11\\n2026-02-13,10\\n2026-02-14,11\\n2026-02-15,13\\n2026-02-16,14\\n2026-02-17,15\\n2026-02-18,14\\n\",\"warmup\":true}",
+  "{\"source\":\"sample\",\"sample\":\"random_walk\",\"short\":\"1\",\"long\":\"3\",\"train\":\"12\",\"test\":\"6\",\"step\":\"\",\"cash\":\"1000\",\"fee\":\"\",\"fee_pct\":\"\",\"warmup\":true}"
+ ]
+}

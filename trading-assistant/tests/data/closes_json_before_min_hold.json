@@ -1,0 +1,156 @@
+{
+ "plain": {
+  "bars": 11,
+  "last_close": 12.2,
+  "signal": "HOLD",
+  "rsi": null,
+  "rsi_label": null,
+  "backtest": {
+   "strategy": "sma_cross",
+   "params": {
+    "short": 1,
+    "long": 2
+   },
+   "fill": "close",
+   "start_cash": 1000.0,
+   "fee": 0.0,
+   "fee_pct": 0.0,
+   "slippage_pct": 0.0,
+   "position_size": null,
+   "stop_loss_pct": null,
+   "take_profit_pct": null,
+   "trades": 3,
+   "buys": 2,
+   "sells": 1,
+   "fills": [
+    {
+     "bar": 4,
+     "side": "BUY",
+     "shares": 90,
+     "price": 11.0,
+     "value": 990.0,
+     "cost": 0.0,
+     "cash_after": 10.0,
+     "reason": "signal"
+    },
+    {
+     "bar": 7,
+     "side": "SELL",
+     "shares": 90,
+     "price": 10.0,
+     "value": 900.0,
+     "cost": 0.0,
+     "cash_after": 910.0,
+     "reason": "signal"
+    },
+    {
+     "bar": 9,
+     "side": "BUY",
+     "shares": 75,
+     "price": 12.0,
+     "value": 900.0,
+     "cost": 0.0,
+     "cash_after": 10.0,
+     "reason": "signal"
+    }
+   ],
+   "total_costs": 0.0,
+   "round_trips": 1,
+   "winning_round_trips": 0,
+   "final_cash": 10.0,
+   "final_position": 75,
+   "final_price": 12.2,
+   "final_equity": 925.0,
+   "return_pct": -7.5,
+   "max_drawdown_pct": -16.51376146788991,
+   "benchmark": {
+    "shares": 100,
+    "final_cash": 0.0,
+    "final_equity": 1220.0,
+    "return_pct": 22.0,
+    "max_drawdown_pct": -20.0,
+    "trades": 1,
+    "total_costs": 0.0
+   }
+  },
+  "disclaimer": "Research aid only. Not financial advice."
+ },
+ "max_hold_2": {
+  "bars": 11,
+  "last_close": 12.2,
+  "signal": "HOLD",
+  "rsi": null,
+  "rsi_label": null,
+  "backtest": {
+   "strategy": "sma_cross",
+   "params": {
+    "short": 1,
+    "long": 2
+   },
+   "fill": "close",
+   "start_cash": 1000.0,
+   "fee": 0.0,
+   "fee_pct": 0.0,
+   "slippage_pct": 0.0,
+   "position_size": null,
+   "stop_loss_pct": null,
+   "take_profit_pct": null,
+   "max_hold_bars": 2,
+   "trades": 3,
+   "buys": 2,
+   "sells": 1,
+   "time_exits": 1,
+   "fills": [
+    {
+     "bar": 4,
+     "side": "BUY",
+     "shares": 90,
+     "price": 11.0,
+     "value": 990.0,
+     "cost": 0.0,
+     "cash_after": 10.0,
+     "reason": "signal"
+    },
+    {
+     "bar": 6,
+     "side": "SELL",
+     "shares": 90,
+     "price": 10.0,
+     "value": 900.0,
+     "cost": 0.0,
+     "cash_after": 910.0,
+     "reason": "time"
+    },
+    {
+     "bar": 9,
+     "side": "BUY",
+     "shares": 75,
+     "price": 12.0,
+     "value": 900.0,
+     "cost": 0.0,
+     "cash_after": 10.0,
+     "reason": "signal"
+    }
+   ],
+   "total_costs": 0.0,
+   "round_trips": 1,
+   "winning_round_trips": 0,
+   "final_cash": 10.0,
+   "final_position": 75,
+   "final_price": 12.2,
+   "final_equity": 925.0,
+   "return_pct": -7.5,
+   "max_drawdown_pct": -16.51376146788991,
+   "benchmark": {
+    "shares": 100,
+    "final_cash": 0.0,
+    "final_equity": 1220.0,
+    "return_pct": 22.0,
+    "max_drawdown_pct": -20.0,
+    "trades": 1,
+    "total_costs": 0.0
+   }
+  },
+  "disclaimer": "Research aid only. Not financial advice."
+ }
+}
